@@ -1,1 +1,8 @@
-
+[
+  {
+    "date": "2026-07-01",
+    "category": "learning",
+    "title": "Set up the update log",
+    "details": "Created updates.json to track club progress going forward."
+  }
+]
