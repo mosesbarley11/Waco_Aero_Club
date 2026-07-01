@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-06-01",
+    "category": "documentation",
+    "title": "Fin and airframe assembly",
+    "details": "Kicked off the build by cutting the through-the-wall fin slots in the airframe, then bonded the centering rings and fins onto the inner motor tube as one assembly. Once those bonds cured, we glued the lower body tube over the inner tube, locking the fins and centering rings in place."
+  },
+  {
     "date": "2026-07-01",
     "category": "learning",
     "title": "Set up the update log",
