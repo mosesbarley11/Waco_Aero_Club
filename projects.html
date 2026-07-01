@@ -265,6 +265,71 @@
             color: var(--text-dim);
             border-top: 1px solid var(--border);
         }
+        /* ===== UPDATES FEED ===== */
+        .updates-section {
+            margin-top: 2rem;
+        }
+        .updates-heading {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--white);
+            padding-left: 0.75rem;
+            border-left: 3px solid var(--accent);
+            margin-bottom: 1rem;
+        }
+        .update-entry {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        .update-entry.category-challenge { border-left-color: #ef4444; }
+        .update-entry.category-learning { border-left-color: var(--blue); }
+        .update-entry.category-documentation { border-left-color: var(--accent); }
+        .update-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+        .update-category {
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .update-category.category-challenge {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .update-category.category-learning {
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--blue);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+        .update-category.category-documentation {
+            background: rgba(249, 115, 22, 0.15);
+            color: var(--accent);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+        }
+        .update-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            margin: 0.4rem 0;
+        }
+        .update-details {
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
         /* ===== FOOTER ===== */
         footer {
             background-color: var(--dark);
@@ -459,7 +524,12 @@
                     </div>
                 </div>
             </div>
-            <div id="live-updates"></div>
+            <div id="live-updates">
+                <div class="updates-section">
+                    <div class="updates-heading">Build Log</div>
+                    <div id="updates-feed"></div>
+                </div>
+            </div>
         </div>
         <div class="project">
             <div class="project-header">
@@ -577,5 +647,29 @@
             <p>Design. Fabricate. Fly.</p>
         </div>
     </footer>
+    <script>
+        fetch('updates.json')
+            .then(res => res.json())
+            .then(updates => {
+                const feed = document.getElementById('updates-feed');
+                updates.sort((a, b) => new Date(b.date) - new Date(a.date));
+                updates.forEach(update => {
+                    const entry = document.createElement('div');
+                    entry.className = `update-entry category-${update.category}`;
+                    entry.innerHTML = `
+                        <div class="update-meta">
+                            <span>${update.date}</span>
+                            <span class="update-category category-${update.category}">${update.category}</span>
+                        </div>
+                        <div class="update-title">${update.title}</div>
+                        <div class="update-details">${update.details}</div>
+                    `;
+                    feed.appendChild(entry);
+                });
+            })
+            .catch(() => {
+                document.getElementById('updates-feed').innerHTML = '<p class="update-details">No updates yet.</p>';
+            });
+    </script>
 </body>
 </html>
