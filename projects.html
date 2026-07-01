@@ -652,7 +652,7 @@
             .then(res => res.json())
             .then(updates => {
                 const feed = document.getElementById('updates-feed');
-                updates.sort((a, b) => new Date(b.date) - new Date(a.date));
+                updates.sort((a, b) => new Date(a.date) - new Date(b.date));
                 updates.forEach(update => {
                     const entry = document.createElement('div');
                     entry.className = `update-entry category-${update.category}`;
