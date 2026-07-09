@@ -10,5 +10,11 @@
     "category": "learning",
     "title": "Set up the update log",
     "details": "Created updates.json to track club progress going forward."
+  },
+  {
+    "date": "2026-07-08",
+    "category": "documentation",
+    "title": "Data Logger Mount Design",
+    "details": "Designed a mount for our data logger in Fusion."
   }
 ]
