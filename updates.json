@@ -18,6 +18,12 @@
     "details": "Wired the Arduino Nano along with the MPU9250 (accelerometer/gyroscope/magnetometer) and BME280 (pressure/altitude) sensors onto a breadboard, then ran bench tests to confirm the logger was reading and recording sensor data correctly."
   },
   {
+    "date": "2026-07-07",
+    "category": "challenge",
+    "title": "Ground Ejection Test",
+    "details": "Hand-fired a ground ejection test of the recovery system. The first attempt failed to eject the parachute because it wasn't fixed to a point on the shock cord and could slide freely along its length. We reran the test after fixing the parachute to the shock cord and the parachute ejected successfully the second time."
+  },
+  {
     "date": "2026-07-08",
     "category": "documentation",
     "title": "Data Logger Mount Design",
