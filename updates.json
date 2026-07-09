@@ -12,6 +12,12 @@
     "details": "Created updates.json to track club progress going forward."
   },
   {
+    "date": "2026-07-01",
+    "category": "documentation",
+    "title": "Breadboard Wiring and Bench Testing",
+    "details": "Wired the Arduino Nano along with the MPU9250 (accelerometer/gyroscope/magnetometer) and BME280 (pressure/altitude) sensors onto a breadboard, then ran bench tests to confirm the logger was reading and recording sensor data correctly."
+  },
+  {
     "date": "2026-07-08",
     "category": "documentation",
     "title": "Data Logger Mount Design",
