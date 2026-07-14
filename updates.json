@@ -28,5 +28,11 @@
     "category": "documentation",
     "title": "Data Logger Mount Design",
     "details": "Designed a mount for our data logger in Fusion."
+  },
+  {
+    "date": "2026-07-08",
+    "category": "documentation",
+    "title": "Final Proto Board Soldering and Nose Cone Mounting",
+    "details": "Soldered the Arduino to the final proto board, tested it to confirm everything still worked, and mounted it inside the nose cone."
   }
 ]
