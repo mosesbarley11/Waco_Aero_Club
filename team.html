@@ -203,22 +203,27 @@
             font-size: 0.85rem;
         }
         .btn {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--accent-glow);
+            color: var(--accent);
+            border: 1px solid var(--accent-dark);
+            padding: 0.6rem 1.25rem;
             border-radius: 8px;
+            text-decoration: none;
             margin-top: 1.5rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.8rem;
             font-weight: 600;
-            font-size: 0.95rem;
-            letter-spacing: 0.01em;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.25);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: all 0.25s;
         }
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(249, 115, 22, 0.35);
+            background: var(--accent);
+            color: var(--white);
+            transform: translateY(-1px);
         }
         /* ===== FOOTER ===== */
         footer {
@@ -311,10 +316,10 @@
             .member-role { font-size: 0.75rem; }
             .member-school { font-size: 0.78rem; }
             .btn {
-                padding: 0.7rem 1.5rem;
-                font-size: 0.9rem;
+                padding: 0.6rem 1.25rem;
+                font-size: 0.75rem;
                 width: 100%;
-                text-align: center;
+                justify-content: center;
             }
             p { font-size: 0.9rem; }
         }
