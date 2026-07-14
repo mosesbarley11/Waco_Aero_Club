@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight 1 - Waco Aero - High School Aerospace Research Club</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Oswald:wght@400;500;600;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --deep: #0a0e1a;
+            --dark: #0f172a;
+            --navy: #1a2744;
+            --accent: #f97316;
+            --accent-light: #fb923c;
+            --accent-dark: #ea580c;
+            --accent-glow: rgba(249, 115, 22, 0.15);
+            --blue: #38bdf8;
+            --blue-dim: #0ea5e9;
+            --text: #e2e8f0;
+            --text-dim: #94a3b8;
+            --surface: #1e293b;
+            --surface-light: #263348;
+            --border: #334155;
+            --white: #f8fafc;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--deep);
+            overflow-x: hidden;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: var(--dark);
+            border-bottom: 1px solid var(--border);
+            padding: 2rem 0 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-logo svg {
+            display: block;
+            max-width: 380px;
+            width: 100%;
+            height: auto;
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            background-color: var(--dark);
+            border-bottom: 2px solid var(--accent);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            max-width: 1100px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 1rem 1.75rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: color 0.3s, background 0.3s;
+            white-space: nowrap;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: var(--accent);
+            background: var(--accent-glow);
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin: 2rem auto;
+            max-width: 1100px;
+            text-align: center;
+        }
+
+        h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            color: var(--white);
+            margin-bottom: 1.25rem;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        h2::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--accent) 0%, transparent 100%);
+        }
+
+        h2::before {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background: var(--accent);
+            clip-path: polygon(50% 0%, 65% 45%, 85% 55%, 65% 55%, 65% 85%, 55% 100%, 50% 85%, 45% 100%, 35% 85%, 35% 55%, 15% 55%, 35% 45%);
+            flex-shrink: 0;
+        }
+
+        p {
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        p:last-child { margin-bottom: 0; }
+
+        .coming-soon {
+            font-size: 1.2rem;
+            color: var(--text);
+            margin: 2rem 0;
+        }
+
+        /* ===== RESEARCH ENTRIES ===== */
+        .research-intro h2 { justify-content: center; }
+        .research-intro h2::after,
+        .research-intro h2::before { display: none; }
+        .research-intro p { max-width: 720px; margin: 0 auto 1rem; }
+
+        .entry-count {
+            display: inline-block;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 0.35rem 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .research-entry {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.25rem 2.5rem;
+            margin: 1.5rem auto;
+            max-width: 1100px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .research-entry::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+        }
+
+        .entry-head {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .entry-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            color: var(--white);
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            line-height: 1.25;
+        }
+
+        .entry-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            display: inline-block;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            color: var(--accent);
+            background: var(--accent-glow);
+            border: 1px solid var(--accent-dark);
+            border-radius: 4px;
+            padding: 0.2rem 0.6rem;
+        }
+
+        .tag.blue {
+            color: var(--blue);
+            background: rgba(56, 189, 248, 0.1);
+            border-color: var(--blue-dim);
+        }
+
+        .entry-date {
+            color: var(--text-dim);
+            margin-left: auto;
+            font-size: 0.75rem;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 0.05em;
+        }
+
+        .entry-block { margin-bottom: 1.5rem; }
+        .entry-block:last-child { margin-bottom: 0; }
+
+        .entry-label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .entry-label::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            transform: rotate(45deg);
+            flex-shrink: 0;
+        }
+
+        .research-entry p { color: var(--text); font-size: 0.95rem; }
+        .research-entry ul, .research-entry ol { margin: 0.4rem 0 0 1.25rem; color: var(--text); font-size: 0.95rem; }
+        .research-entry li { margin-bottom: 0.4rem; }
+        .research-entry li:last-child { margin-bottom: 0; }
+
+        .photo-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            max-width: 520px;
+            margin: 1rem auto 0;
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            background: var(--deep);
+            color: var(--text-dim);
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .entry-photo {
+            display: block;
+            width: 100%;
+            max-width: 420px;
+            margin: 1rem auto 0;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .photo-caption {
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.78rem;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+
+        /* tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .data-table th {
+            background: var(--navy);
+            color: var(--white);
+            font-family: 'Oswald', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            text-align: left;
+            padding: 0.7rem 0.9rem;
+            border: 1px solid var(--border);
+        }
+
+        .data-table td {
+            padding: 0.7rem 0.9rem;
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            vertical-align: top;
+        }
+
+        .data-table td strong { color: var(--text); font-weight: 600; }
+        .data-table tr:nth-child(even) td { background: rgba(255, 255, 255, 0.02); }
+
+        .callout {
+            border-left: 3px solid var(--accent);
+            background: var(--accent-glow);
+            padding: 0.9rem 1.1rem;
+            border-radius: 0 6px 6px 0;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        .callout strong { color: var(--accent-light); }
+
+        .entry-diagram {
+            display: block;
+            width: 100%;
+            max-width: 620px;
+            height: auto;
+            margin: 1rem auto 0;
+            background: var(--deep);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: var(--dark);
+            border-top: 1px solid var(--border);
+            text-align: center;
+            padding: 2.5rem 0;
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent), transparent);
+        }
+
+        footer p {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        footer p:first-child {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .footer-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+            opacity: 0.4;
+        }
+
+        /* ===== RESPONSIVE: TABLET ===== */
+        @media (max-width: 768px) {
+            .header-logo svg { max-width: 260px; }
+
+            header { padding: 1.5rem 0 2rem; }
+
+            .container { padding: 0 16px; }
+
+            nav ul li a {
+                padding: 0.75rem 1rem;
+                font-size: 0.8rem;
+                letter-spacing: 0.03em;
+            }
+
+            section {
+                padding: 1.75rem;
+                margin: 1rem auto;
+            }
+
+            .research-entry {
+                padding: 1.75rem;
+                margin: 1rem auto;
+            }
+
+            .coming-soon { font-size: 1.05rem; }
+        }
+
+        /* ===== RESPONSIVE: MOBILE ===== */
+        @media (max-width: 480px) {
+            .header-logo svg { max-width: 200px; }
+
+            header { padding: 1.25rem 0 1.5rem; }
+
+            .container { padding: 0 12px; }
+
+            nav ul { justify-content: space-around; }
+
+            nav ul li {
+                flex: 1;
+                text-align: center;
+            }
+
+            nav ul li a {
+                padding: 0.65rem 0.5rem;
+                font-size: 0.72rem;
+                letter-spacing: 0.02em;
+            }
+
+            section {
+                padding: 1.25rem;
+                margin: 0.75rem auto;
+                border-radius: 8px;
+            }
+
+            h2 { font-size: 1.2rem; }
+
+            p { font-size: 0.9rem; }
+
+            .coming-soon { font-size: 1rem; }
+
+            .research-entry {
+                padding: 1.35rem 1.15rem;
+                margin: 0.75rem auto;
+                border-radius: 8px;
+            }
+
+            .entry-title { font-size: 1.1rem; }
+
+            .entry-date { margin-left: 0; width: 100%; }
+
+            .data-table { font-size: 0.8rem; }
+            .data-table th, .data-table td { padding: 0.5rem 0.55rem; }
+        }
+
+        /* ===== RESPONSIVE: TINY (320px) ===== */
+        @media (max-width: 360px) {
+            .header-logo svg { max-width: 170px; }
+
+            nav ul li a {
+                font-size: 0.65rem;
+                padding: 0.6rem 0.4rem;
+                letter-spacing: 0;
+            }
+        }
+
+        /* ===== FLIGHT 1 STATS ===== */
+        .flight-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .flight-stat {
+            background: var(--deep);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .flight-stat .fs-label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 0.35rem;
+        }
+        .flight-stat .fs-value {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        .flight-stat .fs-sub {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-top: 0.2rem;
+        }
+        .chart-full {
+            display: block;
+            width: 100%;
+            margin: 1rem auto 0;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="header-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 200" width="380">
+                        <defs>
+                            <linearGradient id="trailCL" x1="1" y1="0" x2="0" y2="0">
+                                <stop offset="0%" stop-color="#f97316"/>
+                                <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+                            </linearGradient>
+                            <linearGradient id="trailCR" x1="0" y1="0" x2="1" y2="0">
+                                <stop offset="0%" stop-color="#f97316"/>
+                                <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+                            </linearGradient>
+                            <filter id="glowC">
+                                <feGaussianBlur stdDeviation="4" result="b"/>
+                                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                            </filter>
+                        </defs>
+                        <path d="M238 42 Q180 25 100 14 Q60 8 30 10" fill="none" stroke="url(#trailCL)" stroke-width="3" filter="url(#glowC)"/>
+                        <path d="M236 50 Q185 38 110 30 Q70 26 40 28" fill="none" stroke="url(#trailCL)" stroke-width="2" opacity="0.5"/>
+                        <path d="M235 58 Q190 50 125 44 Q85 40 55 42" fill="none" stroke="url(#trailCL)" stroke-width="1.2" opacity="0.3"/>
+                        <path d="M242 42 Q300 25 380 14 Q420 8 450 10" fill="none" stroke="url(#trailCR)" stroke-width="3" filter="url(#glowC)"/>
+                        <path d="M244 50 Q295 38 370 30 Q410 26 440 28" fill="none" stroke="url(#trailCR)" stroke-width="2" opacity="0.5"/>
+                        <path d="M245 58 Q290 50 355 44 Q395 40 425 42" fill="none" stroke="url(#trailCR)" stroke-width="1.2" opacity="0.3"/>
+                        <path d="M240 12 L248 50 L244 50 L244 65 L236 65 L236 50 L232 50 Z" fill="#f97316" filter="url(#glowC)"/>
+                        <path d="M236 58 L229 68 L236 64 Z" fill="#ea580c"/>
+                        <path d="M244 58 L251 68 L244 64 Z" fill="#ea580c"/>
+                        <path d="M238 65 L240 74 L242 65" fill="#fb923c" opacity="0.6"/>
+                        <text x="240" y="120" text-anchor="middle" font-size="52" font-weight="700" fill="#e8eaf0" letter-spacing="14" font-family="Oswald, sans-serif">WACO</text>
+                        <line x1="115" y1="128" x2="365" y2="128" stroke="#f97316" stroke-width="2.5"/>
+                        <line x1="135" y1="135" x2="345" y2="135" stroke="#f97316" stroke-width="0.8" opacity="0.4"/>
+                        <text x="240" y="160" text-anchor="middle" font-size="22" font-weight="500" fill="#f97316" letter-spacing="22" font-family="Oswald, sans-serif">AERO</text>
+                        <text x="240" y="185" text-anchor="middle" font-size="8" font-weight="600" fill="#94a3b8" letter-spacing="5" font-family="Inter, sans-serif">DESIGN. FABRICATE. FLY.</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="projects.html" class="active">Projects</a></li>
+            <li><a href="team.html">Team</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section class="research-intro">
+            <h2>Flight 1 &mdash; Data &amp; Analysis</h2>
+            <p>Our first high-power flight: AeroTech H219T, Hearne Municipal Airport (Tripoli Houston), July 11, 2026. Every number on this page comes from the rocket's onboard Arduino data logger &mdash; a BME280 barometer and MPU9250 IMU sampling at 10&nbsp;Hz &mdash; compared against our pre-flight OpenRocket simulation. Each section below covers one piece of the flight, what the data shows, and what we learned from it.</p>
+            <div class="flight-stats">
+                <div class="flight-stat"><div class="fs-label">Apogee</div><div class="fs-value">1,887 ft</div><div class="fs-sub">575 m AGL</div></div>
+                <div class="flight-stat"><div class="fs-label">Max Velocity</div><div class="fs-value">153 m/s</div><div class="fs-sub">Mach 0.45</div></div>
+                <div class="flight-stat"><div class="fs-label">Flight Time</div><div class="fs-value">96.8 s</div><div class="fs-sub">Liftoff to landing</div></div>
+                <div class="flight-stat"><div class="fs-label">Descent Rate</div><div class="fs-value">6.6 m/s</div><div class="fs-sub">Under chute</div></div>
+            </div>
+        </section>
+
+        <!-- SECTION 1: FLIGHT PROFILE -->
+        <article class="research-entry">
+            <div class="entry-head">
+                <h3 class="entry-title">Flight Profile &mdash; Actual vs. Simulation</h3>
+                <div class="entry-meta">
+                    <span class="tag">Flight Data</span>
+                    <span class="tag blue">Barometer</span>
+                    <span class="entry-date">July 2026</span>
+                </div>
+            </div>
+            <div class="entry-block">
+                <div class="entry-label">Overview</div>
+                <p>The full flight from liftoff to touchdown, measured by the onboard barometer, overlaid with our pre-flight OpenRocket prediction. The rocket boosted for about 1 second, coasted for 7.3 more, deployed at 8.3 seconds, topped out at 575&nbsp;m (1,887&nbsp;ft) at 9.7 seconds, and rode the chute down for 87 seconds to a soft landing.</p>
+                <img class="chart-full" src="flight1_profile.png" alt="Flight 1 altitude profile: actual barometer data versus OpenRocket simulation, with boost and coast detail">
+                <p class="photo-caption">Left: full flight, actual (orange) vs. simulation (dashed blue). Right: boost and coast detail with vertical velocity.</p>
+            </div>
+            <div class="entry-block">
+                <div class="entry-label">Key Events</div>
+                <table class="data-table">
+                    <thead><tr><th>Event</th><th>Time</th><th>Altitude (AGL)</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Liftoff</strong></td><td>0.0 s</td><td>0 m</td></tr>
+                        <tr><td><strong>Motor burnout</strong></td><td>~1.0 s</td><td>~76 m</td></tr>
+                        <tr><td><strong>Ejection charge</strong></td><td>8.3 s</td><td>~570 m</td></tr>
+                        <tr><td><strong>Apogee</strong></td><td>9.7 s</td><td>575 m</td></tr>
+                        <tr><td><strong>Landing</strong></td><td>96.8 s</td><td>0 m</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="entry-block">
+                <div class="entry-label">Recovery Check</div>
+                <p>Average descent rate was 6.6&nbsp;m/s, holding steady at ~6.8&nbsp;m/s all the way to the ground &mdash; inside the standard 4.5&ndash;7&nbsp;m/s safe window for this weight class. The chute was correctly sized and fully inflated for the entire descent.</p>
+            </div>
+        </article>
+
+        <!-- SECTION 2: SIM VS ACTUAL -->
+        <article class="research-entry">
+            <div class="entry-head">
+                <h3 class="entry-title">Simulation vs. Reality: A 26% Overshoot</h3>
+                <div class="entry-meta">
+                    <span class="tag">Analysis</span>
+                    <span class="tag blue">OpenRocket</span>
+                    <span class="entry-date">July 2026</span>
+                </div>
+            </div>
+            <div class="entry-block">
+                <div class="entry-label">The Numbers</div>
+                <table class="data-table">
+                    <thead><tr><th>Metric</th><th>OpenRocket Sim</th><th>Actual</th><th>Difference</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Apogee (AGL)</strong></td><td>723 m</td><td>575 m</td><td>Sim over by 26%</td></tr>
+                        <tr><td><strong>Max velocity</strong></td><td>181 m/s</td><td>~153 m/s</td><td>Sim over by ~16%</td></tr>
+                        <tr><td><strong>Burn time</strong></td><td>1.08 s</td><td>~1.0 s</td><td>Match</td></tr>
+                        <tr><td><strong>Time to apogee</strong></td><td>10.7 s</td><td>9.7 s</td><td>&minus;1.0 s</td></tr>
+                        <tr><td><strong>Descent rate</strong></td><td>6.2 m/s</td><td>6.6 m/s</td><td>Close match</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="entry-block">
+                <div class="entry-label">Interpretation</div>
+                <p>The motor performed exactly as advertised &mdash; burn time matched the sim almost perfectly. But the rocket flew slower and lower than predicted, which means it experienced more drag and/or carried more mass than the model assumed. Both signals point the same direction: our simulated rocket was cleaner and lighter than the real one. Surface finish, launch hardware, epoxy fillets, paint, and the data logger all add drag and weight that the stock model underestimates.</p>
+                <p>A small part of the gap has a separate, known cause: early parachute deployment, covered in the next section.</p>
+            </div>
+            <div class="callout">
+                <strong>Takeaway:</strong> Treat OpenRocket apogee predictions for our builds as optimistic until calibrated against flight data. For the next flight we will weigh the finished rocket and tune the sim's drag coefficient until it reproduces this flight &mdash; then predictions become trustworthy.
+            </div>
+        </article>
+
+        <!-- SECTION 3: EARLY DEPLOYMENT -->
+        <article class="research-entry">
+            <div class="entry-head">
+                <h3 class="entry-title">How Early Deployment Cut Our Apogee</h3>
+                <div class="entry-meta">
+                    <span class="tag">Analysis</span>
+                    <span class="tag">Recovery</span>
+                    <span class="entry-date">July 2026</span>
+                </div>
+            </div>
+            <div class="entry-block">
+                <div class="entry-label">What Happened</div>
+                <p>The ejection charge fired at 8.3 seconds &mdash; about 7.3 seconds after burnout and 1.4 seconds <em>before</em> the rocket reached its natural peak. At that moment the rocket was still climbing at roughly 25&ndash;30&nbsp;m/s. Deploying the chute killed that remaining upward momentum: the rocket only gained about 6 more meters after ejection instead of coasting to its full ballistic apogee.</p>
+            </div>
+            <div class="entry-block">
+                <div class="entry-label">What It Cost</div>
+                <p>A rocket climbing at ~25&ndash;30&nbsp;m/s and decelerating at ~10.5&ndash;11.5&nbsp;m/s&sup2; (gravity plus a little drag) had roughly 30&ndash;40&nbsp;m of climb left in it. We banked about 6&nbsp;m of that. Our best estimate is that early deployment cost <strong>roughly 30&nbsp;m (~100&nbsp;ft) of apogee</strong> &mdash; without it, the flight would have peaked around 600&ndash;615&nbsp;m instead of 575&nbsp;m.</p>
+                <table class="data-table">
+                    <thead><tr><th>Scenario</th><th>Apogee (approx.)</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Actual (deployed 1.4 s early)</strong></td><td>575 m / 1,887 ft</td></tr>
+                        <tr><td><strong>Estimated ballistic (deploy at peak)</strong></td><td>~600&ndash;615 m / ~1,970&ndash;2,020 ft</td></tr>
+                    </tbody>
+                </table>
+                <p>Uncertainty note: the barometer reading is disturbed for a moment by the ejection charge's pressure pulse, so the deployment velocity carries real uncertainty &mdash; that is why we report a range rather than one number.</p>
+            </div>
+            <div class="entry-block">
+                <div class="entry-label">Why It Fired Early</div>
+                <p>The motor's factory delay was drilled down to a ~10-second target (OpenRocket's computed optimum was 9.7&nbsp;s), but the delay actually burned for about 7.3 seconds &mdash; roughly 2.7 seconds short. Delay elements have real manufacturing and drilling tolerance, and this flight is our first measured data point on how much.</p>
+            </div>
+            <div class="callout">
+                <strong>Perspective:</strong> Firing 1.4&nbsp;s early at ~25&ndash;30&nbsp;m/s is a much better outcome than firing late &mdash; a late deployment happens while the rocket is accelerating downward, with higher shock loads on the harness. The chute and harness took the early deployment without damage. This also explains only ~20% of the 148&nbsp;m gap between simulation and reality &mdash; the rest is drag and mass, per the section above.
+            </div>
+        </article>
+
+        <!-- SECTION 4: STABILITY -->
+        <article class="research-entry">
+            <div class="entry-head">
+                <h3 class="entry-title">Spin and Stability</h3>
+                <div class="entry-meta">
+                    <span class="tag">Flight Data</span>
+                    <span class="tag blue">Gyroscope</span>
+                    <span class="entry-date">July 2026</span>
+                </div>
+            </div>
+            <div class="entry-block">
+                <div class="entry-label">What the Gyro Showed</div>
+                <table class="data-table">
+                    <thead><tr><th>Measurement</th><th>Value</th><th>Meaning</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Roll rate (boost)</strong></td><td>~0.37 rev/s</td><td>Gentle fin-induced spin</td></tr>
+                        <tr><td><strong>Roll rate (coast)</strong></td><td>~0.48 rev/s</td><td>Steady, consistent spin</td></tr>
+                        <tr><td><strong>Pitch/yaw rates (coast)</strong></td><td>~24 dps RMS</td><td>Small oscillations, no coning</td></tr>
+                        <tr><td><strong>Max tilt from vertical</strong></td><td>~17&deg;</td><td>Modest weathercocking into the wind</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="entry-block">
+                <div class="entry-label">Interpretation</div>
+                <p>The flight was clean and stable. A slow half-revolution-per-second roll is normal &mdash; tiny asymmetries in fin alignment induce it, and the spin actually helps by averaging those same asymmetries out. Pitch and yaw stayed small through the whole ascent, and the modest lean into the wind is expected behavior for a stable rocket. Tilt values come from integrating the gyro, so treat them as good estimates rather than exact measurements.</p>
+            </div>
+        </article>
+
+        <!-- SECTION: 3D RECONSTRUCTION -->
+        <article class="research-entry">
+            <div class="entry-head">
+                <h3 class="entry-title">3D Ascent Reconstruction</h3>
+                <div class="entry-meta">
+                    <span class="tag">Flight Data</span>
+                    <span class="tag blue">Interactive</span>
+                    <span class="entry-date">July 2026</span>
+                </div>
+            </div>
+            <div class="entry-block">
+                <div class="entry-label">What This Is</div>
+                <p>An interactive 3D reconstruction of the ascent, built entirely from the onboard data: altitude from the barometer, and the rocket's tilt from integrating the gyroscope (a technique called dead reckoning). Because a stable rocket flies where it points, the tilt history reveals the lateral path. Drag to orbit, scroll to zoom, and press play to fly the ascent in real time. The gray line on the ground is the path's shadow.</p>
+            </div>
+            <div class="entry-block">
+                <div id="wrap3d" style="position: relative; width: 100%; height: 440px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--deep); touch-action: none;">
+                    <canvas id="c3d" style="width: 100%; height: 100%; display: block;"></canvas>
+                    <div style="position: absolute; top: 10px; left: 12px; font-size: 0.75rem; color: var(--text-dim); pointer-events: none;">Drag to orbit &middot; scroll or pinch to zoom</div>
+                    <div id="hud" style="position: absolute; bottom: 10px; left: 12px; font-size: 0.85rem; color: var(--text); font-variant-numeric: tabular-nums; pointer-events: none;">T+0.0 s &middot; 0 m AGL</div>
+                    <div style="position: absolute; top: 10px; right: 12px; display: flex; gap: 12px; font-size: 0.72rem; color: var(--text-dim); pointer-events: none;">
+                        <span><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:#f97316;vertical-align:-1px;"></span> Boost</span>
+                        <span><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:#fbbf24;vertical-align:-1px;"></span> Coast</span>
+                        <span><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:#38bdf8;vertical-align:-1px;"></span> Apogee</span>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px; margin-top: 0.9rem;">
+                    <button id="play3d" aria-label="Play ascent" style="font-family: 'Oswald', sans-serif; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: var(--accent-glow); border: 1px solid var(--accent-dark); border-radius: 6px; padding: 0.45rem 1.1rem; cursor: pointer;">Play</button>
+                    <input type="range" id="scrub3d" min="0" max="9.7" step="0.05" value="0" style="flex: 1; accent-color: var(--accent);">
+                    <span id="tlab3d" style="font-size: 0.85rem; color: var(--text-dim); min-width: 52px; text-align: right; font-variant-numeric: tabular-nums;">0.0 s</span>
+                </div>
+            </div>
+            <div class="entry-block">
+                <div class="entry-label">Accuracy &amp; Limits</div>
+                <ul>
+                    <li><strong>Vertical axis:</strong> directly measured by the barometer &mdash; high confidence.</li>
+                    <li><strong>Lateral path:</strong> estimated from gyro integration at 10&nbsp;Hz &mdash; the shape is roughly right, but treat the ~76&nbsp;m lateral drift as &plusmn;50%, and the compass direction is arbitrary.</li>
+                    <li><strong>Ascent only:</strong> the ejection event spins the rocket faster than 10&nbsp;Hz sampling can track, so orientation knowledge ends at deployment. The descent drift was not measurable with this logger.</li>
+                </ul>
+            </div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+            <script>
+            (function(){
+            var ASC=[[0.0,0.0,0.0,1.7],[0.2,0.1,0.2,3.2],[0.4,1.8,1.0,10.6],[0.6,4.7,2.2,26.4],[0.8,8.4,5.8,49.3],[1.0,11.2,11.1,76.1],[1.2,12.9,16.0,105.9],[1.4,13.3,18.1,135.3],[1.6,14.8,18.8,161.1],[1.8,17.3,19.4,181.7],[2.0,20.2,21.4,201.6],[2.2,22.7,24.7,220.8],[2.4,23.8,28.2,239.1],[2.6,23.8,31.2,256.5],[2.8,23.5,32.7,273.7],[3.0,23.6,33.3,290.1],[3.2,24.7,33.5,305.9],[3.4,26.4,34.1,321.6],[3.6,28.7,35.4,336.3],[3.8,31.1,37.2,350.7],[4.0,32.7,39.3,364.9],[4.2,33.2,41.3,378.9],[4.4,33.2,43.4,391.9],[4.6,33.4,44.9,404.8],[4.8,33.8,45.5,417.2],[5.0,34.2,45.9,428.5],[5.2,35.3,46.4,439.7],[5.4,37.0,46.6,451.7],[5.6,39.0,46.9,463.8],[5.8,41.0,47.5,474.6],[6.0,42.7,48.4,483.6],[6.2,44.4,49.3,492.4],[6.4,45.8,50.7,500.9],[6.6,47.0,52.1,509.6],[6.8,48.0,53.3,517.4],[7.0,48.8,54.1,525.0],[7.2,49.5,54.7,532.8],[7.4,49.9,55.2,540.4],[7.6,50.2,55.6,546.9],[7.8,50.5,55.9,554.0],[8.0,50.9,55.9,560.4],[8.2,52.2,55.0,567.2],[8.4,52.8,54.8,571.6],[9.7,52.8,54.8,575.3]];
+            var wrap=document.getElementById('wrap3d'),canvas=document.getElementById('c3d');
+            var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+            var scene=new THREE.Scene();
+            var camera=new THREE.PerspectiveCamera(50,1,1,6000);
+            var GRIDC=0x334155;
+            scene.add(new THREE.GridHelper(400,16,GRIDC,GRIDC));
+            var pad=new THREE.Mesh(new THREE.CylinderGeometry(8,8,3,24),new THREE.MeshBasicMaterial({color:0x94a3b8}));
+            pad.position.set(0,1.5,0);scene.add(pad);
+            function v3(x,y,z){return new THREE.Vector3(x,z,-y);}
+            function tube(pts,color){
+                var curve=new THREE.CatmullRomCurve3(pts);
+                return new THREE.Mesh(new THREE.TubeGeometry(curve,80,2,8,false),new THREE.MeshBasicMaterial({color:color}));
+            }
+            var boostPts=[],coastPts=[];
+            for(var i=0;i<ASC.length;i++){
+                var p=ASC[i];
+                if(p[0]<=1.05)boostPts.push(v3(p[1],p[2],p[3]));
+                if(p[0]>=0.95)coastPts.push(v3(p[1],p[2],p[3]));
+            }
+            scene.add(tube(boostPts,0xf97316));
+            scene.add(tube(coastPts,0xfbbf24));
+            var apo=new THREE.Mesh(new THREE.SphereGeometry(6,16,16),new THREE.MeshBasicMaterial({color:0x38bdf8}));
+            apo.position.copy(v3(52.8,54.8,575.3));scene.add(apo);
+            var shadowPts=[];
+            for(var j=0;j<ASC.length;j++)shadowPts.push(new THREE.Vector3(ASC[j][1],0.5,-ASC[j][2]));
+            scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(shadowPts),new THREE.LineBasicMaterial({color:0x64748b,transparent:true,opacity:0.5})));
+            var marker=new THREE.Mesh(new THREE.SphereGeometry(7,16,16),new THREE.MeshBasicMaterial({color:0xf97316}));
+            scene.add(marker);
+            var theta=0.9,phi=1.2,dist=820,target=new THREE.Vector3(26,290,-27);
+            function updateCam(){
+                camera.position.set(
+                    target.x+dist*Math.sin(phi)*Math.cos(theta),
+                    target.y+dist*Math.cos(phi),
+                    target.z+dist*Math.sin(phi)*Math.sin(theta));
+                camera.lookAt(target);
+            }
+            var dragging=false,px=0,py=0;
+            wrap.addEventListener('pointerdown',function(e){dragging=true;px=e.clientX;py=e.clientY;wrap.setPointerCapture(e.pointerId);});
+            wrap.addEventListener('pointermove',function(e){
+                if(!dragging)return;
+                theta+=(e.clientX-px)*0.008;phi-=(e.clientY-py)*0.006;
+                phi=Math.max(0.15,Math.min(1.5,phi));px=e.clientX;py=e.clientY;updateCam();
+            });
+            wrap.addEventListener('pointerup',function(){dragging=false;});
+            wrap.addEventListener('wheel',function(e){e.preventDefault();dist=Math.max(250,Math.min(2500,dist*(1+e.deltaY*0.001)));updateCam();},{passive:false});
+            var pinch=0;
+            wrap.addEventListener('touchmove',function(e){
+                if(e.touches.length===2){
+                    var d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);
+                    if(pinch>0){dist=Math.max(250,Math.min(2500,dist*pinch/d));updateCam();}
+                    pinch=d;
+                }
+            },{passive:true});
+            wrap.addEventListener('touchend',function(){pinch=0;});
+            function posAt(t){
+                var i=0;while(i<ASC.length-1&&ASC[i+1][0]<t)i++;
+                var a=ASC[i],b=ASC[Math.min(i+1,ASC.length-1)];
+                var f=(b[0]===a[0])?0:(t-a[0])/(b[0]-a[0]);
+                return {x:a[1]+(b[1]-a[1])*f,y:a[2]+(b[2]-a[2])*f,z:a[3]+(b[3]-a[3])*f};
+            }
+            var scrub=document.getElementById('scrub3d'),tlab=document.getElementById('tlab3d'),
+                hud=document.getElementById('hud'),playBtn=document.getElementById('play3d');
+            var playing=false,lastF=0;
+            function setT(t){
+                var p=posAt(t);
+                marker.position.copy(v3(p.x,p.y,p.z));
+                tlab.textContent=t.toFixed(1)+' s';
+                var phase=t<1?'boost':t<8.3?'coast':'deploy';
+                hud.innerHTML='T+'+t.toFixed(1)+' s &middot; '+Math.round(p.z)+' m AGL &middot; '+phase;
+            }
+            scrub.addEventListener('input',function(){playing=false;playBtn.textContent='Play';setT(parseFloat(scrub.value));});
+            playBtn.addEventListener('click',function(){
+                playing=!playing;
+                playBtn.textContent=playing?'Pause':'Play';
+                if(playing&&parseFloat(scrub.value)>=9.65)scrub.value=0;
+            });
+            function size(){
+                var w=wrap.clientWidth,h=wrap.clientHeight;
+                renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();
+            }
+            new ResizeObserver(size).observe(wrap);
+            size();updateCam();setT(0);
+            function loop(ts){
+                requestAnimationFrame(loop);
+                if(playing){
+                    var t=parseFloat(scrub.value)+(ts-lastF)/1000;
+                    if(t>=9.7){t=9.7;playing=false;playBtn.textContent='Play';}
+                    scrub.value=t;setT(t);
+                }
+                lastF=ts;
+                renderer.render(scene,camera);
+            }
+            requestAnimationFrame(loop);
+            })();
+            </script>
+        </article>
+
+        <!-- SECTION 5: INSTRUMENTATION -->
+        <article class="research-entry">
+            <div class="entry-head">
+                <h3 class="entry-title">Instrumentation: What Worked, What Didn't</h3>
+                <div class="entry-meta">
+                    <span class="tag">Avionics</span>
+                    <span class="tag blue">Lessons Learned</span>
+                    <span class="entry-date">July 2026</span>
+                </div>
+            </div>
+            <div class="entry-block">
+                <div class="entry-label">Scorecard</div>
+                <table class="data-table">
+                    <thead><tr><th>Sensor</th><th>Status</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>BME280 barometer</strong></td><td>Worked</td><td>Clean altitude data for the entire flight &mdash; the backbone of every chart on this page</td></tr>
+                        <tr><td><strong>Gyroscope</strong></td><td>Worked</td><td>Captured roll and tilt through ascent; 10 Hz is too slow to track the ejection tumble</td></tr>
+                        <tr><td><strong>Accelerometer</strong></td><td>Partial</td><td>Saturated at its &plusmn;16g limit during boost &mdash; true peak acceleration was never recorded</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="entry-block">
+                <div class="entry-label">What We'd Change</div>
+                <ul>
+                    <li><strong>Wider accelerometer range:</strong> configure &plusmn;32g or higher (or add a high-g sensor) so boost acceleration isn't clipped.</li>
+                    <li><strong>Faster logging:</strong> 10 Hz was enough for altitude but under-samples fast events like ejection; 50&ndash;100 Hz is the goal for the next logger revision.</li>
+                    <li><strong>Position tracking:</strong> the rocket's drift direction is unmeasurable with the current logger &mdash; the planned Eggfinder GPS tracker project adds real position data for future flights.</li>
+                </ul>
+            </div>
+        </article>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 50" width="80">
+                    <defs>
+                        <linearGradient id="ftL" x1="1" y1="0" x2="0" y2="0">
+                            <stop offset="0%" stop-color="#f97316"/>
+                            <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+                        </linearGradient>
+                        <linearGradient id="ftR" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#f97316"/>
+                            <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M58 8 Q45 4 25 2 Q10 1 2 2" fill="none" stroke="url(#ftL)" stroke-width="1.5" opacity="0.6"/>
+                    <path d="M62 8 Q75 4 95 2 Q110 1 118 2" fill="none" stroke="url(#ftR)" stroke-width="1.5" opacity="0.6"/>
+                    <path d="M60 2 L63 12 L62 12 L62 18 L58 18 L58 12 L57 12 Z" fill="#f97316" opacity="0.7"/>
+                    <text x="60" y="36" text-anchor="middle" font-size="10" font-weight="700" fill="#e8eaf0" letter-spacing="3" font-family="Oswald, sans-serif">WACO</text>
+                    <text x="60" y="46" text-anchor="middle" font-size="5" font-weight="500" fill="#f97316" letter-spacing="5" font-family="Oswald, sans-serif">AERO</text>
+                </svg>
+            </div>
+            <p>&copy; 2025 Waco Aero &mdash; High School Aerospace Research Club</p>
+            <p>Design. Fabricate. Fly.</p>
+        </div>
+    </footer>
+</body>
+</html>

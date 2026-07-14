@@ -330,6 +330,24 @@
             color: var(--text-dim);
             line-height: 1.6;
         }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.01em;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.25);
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(249, 115, 22, 0.35);
+        }
         /* ===== FOOTER ===== */
         footer {
             background-color: var(--dark);
@@ -530,6 +548,7 @@
                     <div id="updates-feed"></div>
                 </div>
             </div>
+            <a href="flight1.html" class="btn">View Full Flight Report &raquo;</a>
         </div>
         <div class="project">
             <div class="project-header">
