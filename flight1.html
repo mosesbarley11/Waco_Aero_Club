@@ -270,6 +270,15 @@
             letter-spacing: 0.05em;
         }
 
+        .entry-deck {
+            font-size: 1.15rem;
+            font-weight: 400;
+            line-height: 1.55;
+            color: var(--text);
+            margin-bottom: 1.75rem;
+            max-width: 780px;
+        }
+
         .entry-block { margin-bottom: 1.5rem; }
         .entry-block:last-child { margin-bottom: 0; }
 
@@ -496,6 +505,8 @@
 
             .entry-title { font-size: 1.1rem; }
 
+            .entry-deck { font-size: 1.02rem; margin-bottom: 1.35rem; }
+
             .entry-date { margin-left: 0; width: 100%; }
 
             .data-table { font-size: 0.8rem; }
@@ -627,6 +638,7 @@
                     <span class="entry-date">July 2026</span>
                 </div>
             </div>
+            <p class="entry-deck">The whole flight in one chart, from liftoff to touchdown, laid over what our simulation predicted.</p>
             <div class="entry-block">
                 <div class="entry-label">Overview</div>
                 <p>The full flight from liftoff to touchdown, measured by the onboard barometer, overlaid with our pre-flight OpenRocket prediction. The rocket boosted for about 1 second, coasted for 7.3 more, deployed at 8.3 seconds, topped out at 575&nbsp;m (1,887&nbsp;ft) at 9.7 seconds, and rode the chute down for 87 seconds to a soft landing.</p>
@@ -662,6 +674,7 @@
                     <span class="entry-date">July 2026</span>
                 </div>
             </div>
+            <p class="entry-deck">Our pre-flight prediction came in 26% high. Here's the side-by-side, and what the gap says about drag and weight.</p>
             <div class="entry-block">
                 <div class="entry-label">The Numbers</div>
                 <table class="data-table">
@@ -695,6 +708,7 @@
                     <span class="entry-date">July 2026</span>
                 </div>
             </div>
+            <p class="entry-deck">The parachute fired 1.4 seconds early. We work out what that cost us in altitude, and why missing early beats missing late.</p>
             <div class="entry-block">
                 <div class="entry-label">What Happened</div>
                 <p>The ejection charge fired at 8.3 seconds &mdash; about 7.3 seconds after burnout and 1.4 seconds <em>before</em> the rocket reached its natural peak. At that moment the rocket was still climbing at roughly 25&ndash;30&nbsp;m/s. Deploying the chute killed that remaining upward momentum: the rocket only gained about 6 more meters after ejection instead of coasting to its full ballistic apogee.</p>
@@ -730,6 +744,7 @@
                     <span class="entry-date">July 2026</span>
                 </div>
             </div>
+            <p class="entry-deck">What the gyroscope saw on the way up: a slow, steady roll and a gentle lean into the wind, exactly how a stable rocket should behave.</p>
             <div class="entry-block">
                 <div class="entry-label">What the Gyro Showed</div>
                 <table class="data-table">
@@ -757,6 +772,7 @@
                     <span class="entry-date">July 2026</span>
                 </div>
             </div>
+            <p class="entry-deck">Watch the ascent replay in 3D, rebuilt from two onboard sensors and nothing else. Drag to see it from any angle.</p>
             <div class="entry-block">
                 <div class="entry-label">What This Is</div>
                 <p>A 3D reconstruction of the ascent, built entirely from the onboard data: altitude from the barometer, and the rocket's tilt from integrating the gyroscope (a technique called dead reckoning). Because a stable rocket flies where it points, the tilt history reveals the lateral path. Drag to orbit and scroll to zoom. The gray line on the ground is the path's shadow.</p>
@@ -883,6 +899,7 @@
                     <span class="entry-date">July 2026</span>
                 </div>
             </div>
+            <p class="entry-deck">An honest scorecard of the electronics, from the barometer that carried the whole flight to the accelerometer that ran out of range.</p>
             <div class="entry-block">
                 <div class="entry-label">Scorecard</div>
                 <table class="data-table">
