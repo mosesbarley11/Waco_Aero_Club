@@ -108,12 +108,15 @@
 
     /* Largest rect with the image's aspect ratio that fits the viewport. */
     function fitRect(natW, natH) {
-        // Landscape phones are wide but short: drop the caption gutter and use nearly the full height.
-        var short = window.innerHeight < 500 && window.innerWidth > window.innerHeight;
-        var padX = short ? 60 : (window.innerWidth < 600 ? 16 : 72);
-        var padY = short ? 6 : (window.innerWidth < 600 ? 88 : 104);
-        var availW = Math.max(80, window.innerWidth - padX * 2);
-        var availH = Math.max(80, window.innerHeight - padY * 2);
+        // Measure the fixed overlay itself: on iOS it tracks rotation more reliably than window.inner*.
+        var vw = (overlay && overlay.clientWidth) || window.innerWidth;
+        var vh = (overlay && overlay.clientHeight) || window.innerHeight;
+        // Landscape phones are wide but short: drop the caption gutter and use the full height.
+        var short = vh < 500 && vw > vh;
+        var padX = short ? 56 : (vw < 600 ? 16 : 72);
+        var padY = short ? 0 : (vw < 600 ? 88 : 104);
+        var availW = Math.max(80, vw - padX * 2);
+        var availH = Math.max(80, vh - padY * 2);
         var ratio = natW / natH;
         var w = availW, h = w / ratio;
         if (h > availH) { h = availH; w = h * ratio; }
@@ -121,8 +124,8 @@
         if (w > natW) { w = natW; h = natH; }
         return {
             width: w, height: h,
-            left: (window.innerWidth - w) / 2,
-            top: (window.innerHeight - h) / 2
+            left: (vw - w) / 2,
+            top: (vh - h) / 2
         };
     }
 
@@ -375,13 +378,23 @@
             else if (e.key === 'Tab') { e.preventDefault(); closeBtn.focus(); }
         });
 
-        window.addEventListener('resize', function () {
-            if (current < 0 || animating) return;
+        function relayout() {
+            if (current < 0 || overlay.classList.contains('lb-closing')) return;
             var t = thumbs[current];
-            var rect = fitRect(t.naturalWidth || 1200, t.naturalHeight || 800);
             imgEl.style.transition = 'none';
-            placeFinal(rect);
-        });
+            imgEl.style.transform = 'translate(0,0) scale(1,1)';
+            placeFinal(fitRect(t.naturalWidth || 1200, t.naturalHeight || 800));
+        }
+        // Phones report the new size late during a rotation, so measure again once it settles.
+        var relayoutTimers = [];
+        function relayoutSoon() {
+            relayout();
+            relayoutTimers.forEach(window.clearTimeout);
+            relayoutTimers = [150, 400, 800].map(function (ms) { return window.setTimeout(relayout, ms); });
+        }
+        window.addEventListener('resize', relayoutSoon);
+        window.addEventListener('orientationchange', relayoutSoon);
+        if (window.visualViewport) window.visualViewport.addEventListener('resize', relayoutSoon);
 
         var sx = 0, sy = 0, onControls = false;
         overlay.addEventListener('touchstart', function (e) {
