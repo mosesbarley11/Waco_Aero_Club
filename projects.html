@@ -294,6 +294,10 @@
             transition: transform 0.35s, filter 0.35s;
         }
         .gallery-item:hover img { transform: scale(1.04); filter: brightness(1.08); }
+        /* Charts are wide: show the whole thing instead of cropping */
+        .gallery-chart { grid-column: 1 / -1; }
+        .gallery-chart img { aspect-ratio: 1600 / 880; object-fit: contain; background: var(--deep); }
+        .gallery-item.gallery-chart:hover img { transform: none; }
         .gallery-media { position: relative; }
         .gallery-play {
             position: absolute;
@@ -641,6 +645,9 @@
                     </figure>
                     <figure class="gallery-item">
                         <img src="gallery/h-rocket/11-avionics-breadboard.jpg" data-caption="Arduino flight logger prototyped on a breadboard — July 6, 2026" alt="Arduino flight data logger wired up on a breadboard" loading="lazy">
+                    </figure>
+                    <figure class="gallery-item gallery-chart">
+                        <img src="flight1_profile.svg" data-caption="Flight 1 data: the onboard barometer (orange) vs. our OpenRocket sim (dashed blue), peaking at 575 m (1,887 ft) — July 11, 2026" alt="Flight 1 altitude chart: measured barometer data peaking at 575 m versus the OpenRocket simulation" loading="lazy">
                     </figure>
                 </div>
             </div>
