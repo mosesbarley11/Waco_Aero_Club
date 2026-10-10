@@ -265,6 +265,77 @@
             color: var(--text-dim);
             border-top: 1px solid var(--border);
         }
+        /* ===== MEDIA GALLERY ===== */
+        .gallery-section { margin-top: 2rem; }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.75rem;
+        }
+        .gallery-item {
+            margin: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: rgba(15, 23, 42, 0.5);
+            transition: border-color 0.25s, transform 0.25s;
+        }
+        .gallery-item:hover {
+            border-color: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+        .gallery-item img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+        }
+        .gallery-item figcaption {
+            padding: 0.6rem 0.8rem;
+            font-size: 0.78rem;
+            line-height: 1.45;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+        }
+        .gallery-media { position: relative; }
+        .gallery-play {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+        .gallery-play span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: rgba(10, 14, 26, 0.72);
+            border: 2px solid var(--accent);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+        }
+        .gallery-play svg { width: 20px; height: 20px; margin-left: 3px; fill: var(--accent); }
+        .gallery-hint {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin: -0.4rem 0 1rem;
+        }
+        .gallery-date {
+            display: block;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.15rem;
+        }
+        @media (max-width: 480px) {
+            .gallery-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+            .gallery-item figcaption { font-size: 0.72rem; padding: 0.5rem 0.6rem; }
+        }
         /* ===== UPDATES FEED ===== */
         .updates-section {
             margin-top: 2rem;
@@ -544,6 +615,63 @@
                 </div>
             </div>
             <a href="flight1.html" class="btn-report">View Full Flight Report &raquo;</a>
+            <div class="gallery-section">
+                <div class="updates-heading">Gallery</div>
+                <p class="gallery-hint">Tap any photo or video to view full screen &mdash; swipe or use the arrow keys to browse.</p>
+                <div class="gallery-grid" data-gallery>
+                    <figure class="gallery-item">
+                        <div class="gallery-media">
+                            <img src="gallery/h-rocket/launch-poster.jpg" data-video="gallery/h-rocket/launch.mp4" data-caption="Liftoff at Tripoli Houston — July 11, 2026" alt="Launch video: the H-level rocket lifting off at Tripoli Houston" loading="lazy">
+                            <div class="gallery-play"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></span></div>
+                        </div>
+                        <figcaption><span class="gallery-date">July 11, 2026 &middot; Video</span>Liftoff at Tripoli Houston</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="gallery/h-rocket/01-planning-meeting-1.jpg" data-caption="Kickoff meeting — planning the club’s first high-power rocket — March 2026" alt="Club members gathered in a living room for the H-level rocket kickoff meeting" loading="lazy">
+                        <figcaption><span class="gallery-date">March 2026</span>Kickoff meeting &mdash; planning the club&rsquo;s first high-power rocket</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="gallery/h-rocket/02-planning-meeting-2.jpg" data-caption="Design session — laptops out for sims and parts planning — March 2026" alt="Club members working on laptops during a rocket design session" loading="lazy">
+                        <figcaption><span class="gallery-date">March 2026</span>Design session &mdash; laptops out for sims and parts planning</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="gallery/h-rocket/03-fin-install.jpg" data-caption="Fitting the 3D-printed fins to the airframe — June 3, 2026" alt="Members fitting black 3D-printed fins to the rocket body tube at a workbench" loading="lazy">
+                        <figcaption><span class="gallery-date">June 3, 2026</span>Fitting the 3D-printed fins to the airframe</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="gallery/h-rocket/04-airframe-parts.jpg" data-caption="Airframe with the printed slot-cutting jig, motor mount with centering rings, and fins — June 3, 2026" alt="Blue Tube airframe in a yellow 3D-printed slot-cutting jig next to the motor mount and fins" loading="lazy">
+                        <figcaption><span class="gallery-date">June 3, 2026</span>Airframe with the printed slot-cutting jig, motor mount with centering rings, and fins</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="gallery/h-rocket/05-build-crew.jpg" data-caption="The build crew at the workbench — June 4, 2026" alt="Six club members smiling around the garage workbench during the rocket build" loading="lazy">
+                        <figcaption><span class="gallery-date">June 4, 2026</span>The build crew at the workbench</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="gallery/h-rocket/06-build-day-1.jpg" data-caption="Build day — assembly and avionics work in the shop — June 4, 2026" alt="Club members gathered around the workbench in the garage shop" loading="lazy">
+                        <figcaption><span class="gallery-date">June 4, 2026</span>Build day &mdash; assembly and avionics work in the shop</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="gallery/h-rocket/07-build-day-2.jpg" data-caption="Build day, continued — checking the flight computer setup — June 4, 2026" alt="Club members working in the garage with a laptop on a toolbox" loading="lazy">
+                        <figcaption><span class="gallery-date">June 4, 2026</span>Build day, continued &mdash; checking the flight computer setup</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="gallery/h-rocket/08-finished-rocket.jpg" style="object-position: center 15%" data-caption="Finished and painted — ready for launch — June 25, 2026" alt="The completed rocket with a black nose cone and green airframe standing upright" loading="lazy">
+                        <figcaption><span class="gallery-date">June 25, 2026</span>Finished and painted &mdash; ready for launch</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="gallery/h-rocket/09-fin-can.jpg" data-caption="Fin can with three 3D-printed fins — June 25, 2026" alt="Close-up of the rocket's fin can with three black fins" loading="lazy">
+                        <figcaption><span class="gallery-date">June 25, 2026</span>Fin can with three 3D-printed fins</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="gallery/h-rocket/10-fin-fillets-closeup.jpg" data-caption="Epoxy fin fillets and the motor mount tube — June 25, 2026" alt="Close-up of epoxy fillets along the fin roots and the aft end of the motor mount" loading="lazy">
+                        <figcaption><span class="gallery-date">June 25, 2026</span>Epoxy fin fillets and the motor mount tube</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="gallery/h-rocket/11-avionics-breadboard.jpg" data-caption="Arduino flight logger prototyped on a breadboard — July 6, 2026" alt="Arduino flight data logger wired up on a breadboard" loading="lazy">
+                        <figcaption><span class="gallery-date">July 6, 2026</span>Arduino flight logger prototyped on a breadboard</figcaption>
+                    </figure>
+                </div>
+            </div>
             <div id="live-updates">
                 <div class="updates-section">
                     <div class="updates-heading">Build Log</div>

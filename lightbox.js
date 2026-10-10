@@ -1,6 +1,8 @@
 /* Waco Aero — click-to-expand image viewer.
    Self-contained: injects its own styles, binds every content <img> on the page.
-   Opt an image out with the data-no-lightbox attribute. */
+   Opt an image out with the data-no-lightbox attribute.
+   Video: give a poster <img> a data-video="clip.mp4" attribute; it opens and plays in the viewer.
+   Group: images inside a [data-gallery] element are browsed only among themselves. */
 (function () {
     'use strict';
 
@@ -53,6 +55,10 @@
         '  color: #94a3b8; opacity: 0; transition: opacity 200ms ease 120ms;',
         '}',
         '.lb-open .lb-count { opacity: 1; }',
+        '.lb-video {',
+        '  position: absolute; display: block; background: #000;',
+        '  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);',
+        '}',
         '.lb-hidden { display: none !important; }',
         '@media (max-width: 600px) {',
         '  .lb-btn { width: 40px; height: 40px; }',
@@ -68,7 +74,8 @@
     var EASING = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
 
     var thumbs = [];
-    var overlay, stage, imgEl, capEl, countEl, prevBtn, nextBtn, closeBtn;
+    var overlay, stage, imgEl, videoEl, capEl, countEl, prevBtn, nextBtn, closeBtn;
+    var videoTimer = 0;
     var current = -1;
     var animating = false;
     var lastFocus = null;
@@ -112,10 +119,39 @@
     }
 
     function placeFinal(rect) {
-        imgEl.style.left = rect.left + 'px';
-        imgEl.style.top = rect.top + 'px';
-        imgEl.style.width = rect.width + 'px';
-        imgEl.style.height = rect.height + 'px';
+        [imgEl, videoEl].forEach(function (el) {
+            el.style.left = rect.left + 'px';
+            el.style.top = rect.top + 'px';
+            el.style.width = rect.width + 'px';
+            el.style.height = rect.height + 'px';
+        });
+    }
+
+    /* Thumbs browsable alongside the given one: its [data-gallery] group, else all ungrouped images. */
+    function groupOf(thumb) {
+        var g = thumb.closest('[data-gallery]');
+        return thumbs.filter(function (t) { return t.closest('[data-gallery]') === g; });
+    }
+
+    function stopVideo() {
+        window.clearTimeout(videoTimer);
+        videoEl.pause();
+        videoEl.removeAttribute('src');
+        videoEl.load();
+        videoEl.classList.add('lb-hidden');
+        imgEl.classList.remove('lb-hidden');
+    }
+
+    /* Swap the poster for the playing clip once it has finished growing into place. */
+    function startVideo(thumb, delay) {
+        videoTimer = window.setTimeout(function () {
+            videoEl.src = thumb.getAttribute('data-video');
+            videoEl.poster = thumb.currentSrc || thumb.src;
+            videoEl.classList.remove('lb-hidden');
+            imgEl.classList.add('lb-hidden');
+            var p = videoEl.play();
+            if (p && p.catch) p.catch(function () {});
+        }, delay);
     }
 
     /* Transform that maps the final rect onto the thumbnail's on-screen box. */
@@ -160,6 +196,8 @@
     function render(index, animateFrom) {
         var thumb = thumbs[index];
         current = index;
+        stopVideo();
+        var isVideo = thumb.hasAttribute('data-video');
 
         var natW = thumb.naturalWidth || thumb.offsetWidth || 1200;
         var natH = thumb.naturalHeight || thumb.offsetHeight || 800;
@@ -174,8 +212,9 @@
         capEl.textContent = cap;
         capEl.classList.toggle('lb-hidden', !cap);
 
-        countEl.textContent = thumbs.length > 1 ? (index + 1) + ' / ' + thumbs.length : '';
-        var solo = thumbs.length < 2;
+        var group = groupOf(thumb);
+        countEl.textContent = group.length > 1 ? (group.indexOf(thumb) + 1) + ' / ' + group.length : '';
+        var solo = group.length < 2;
         prevBtn.classList.toggle('lb-hidden', solo);
         nextBtn.classList.toggle('lb-hidden', solo);
 
@@ -193,12 +232,14 @@
                 imgEl.style.transform = 'translate(0,0) scale(1,1)';
                 imgEl.style.borderRadius = '0px';
                 window.setTimeout(function () { animating = false; }, DURATION);
+                if (isVideo) startVideo(thumb, DURATION);
                 return;
             }
         }
         imgEl.style.transition = 'none';
         imgEl.style.transform = 'translate(0,0) scale(1,1)';
         imgEl.style.borderRadius = '0px';
+        if (isVideo) startVideo(thumb, 0);
     }
 
     function open(index) {
@@ -214,6 +255,7 @@
     function close() {
         if (animating || current < 0) return;
         var thumb = thumbs[current];
+        stopVideo();
         var finish = function () {
             overlay.classList.remove('lb-open');
             overlay.setAttribute('aria-hidden', 'true');
@@ -257,9 +299,10 @@
     }
 
     function step(delta) {
-        if (thumbs.length < 2 || animating) return;
-        var next = (current + delta + thumbs.length) % thumbs.length;
-        render(next, false);
+        var group = groupOf(thumbs[current]);
+        if (group.length < 2 || animating) return;
+        var pos = group.indexOf(thumbs[current]);
+        render(thumbs.indexOf(group[(pos + delta + group.length) % group.length]), false);
     }
 
     function build() {
@@ -280,6 +323,13 @@
         imgEl = document.createElement('img');
         imgEl.className = 'lb-img';
 
+        videoEl = document.createElement('video');
+        videoEl.className = 'lb-video lb-hidden';
+        videoEl.controls = true;
+        videoEl.playsInline = true;
+        videoEl.setAttribute('playsinline', '');
+        videoEl.preload = 'auto';
+
         capEl = document.createElement('div');
         capEl.className = 'lb-caption';
 
@@ -291,6 +341,7 @@
         nextBtn = button('lb-next', 'Next image', '<path d="M9 5l7 7-7 7"/>');
 
         stage.appendChild(imgEl);
+        stage.appendChild(videoEl);
         overlay.appendChild(stage);
         overlay.appendChild(capEl);
         overlay.appendChild(countEl);
@@ -304,7 +355,7 @@
         nextBtn.addEventListener('click', function (e) { e.stopPropagation(); step(1); });
         // Clicking the backdrop closes; clicking the photo itself does not.
         overlay.addEventListener('click', function (e) {
-            if (e.target === imgEl) return;
+            if (e.target === imgEl || e.target === videoEl) return;
             close();
         });
 
@@ -324,11 +375,14 @@
             placeFinal(rect);
         });
 
-        var sx = 0, sy = 0;
+        var sx = 0, sy = 0, onControls = false;
         overlay.addEventListener('touchstart', function (e) {
             sx = e.changedTouches[0].clientX; sy = e.changedTouches[0].clientY;
+            var vr = videoEl.getBoundingClientRect();
+            onControls = !videoEl.classList.contains('lb-hidden') && sy > vr.bottom - 60 && sy < vr.bottom;
         }, { passive: true });
         overlay.addEventListener('touchend', function (e) {
+            if (onControls) return;
             var dx = e.changedTouches[0].clientX - sx;
             var dy = e.changedTouches[0].clientY - sy;
             if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) step(dx < 0 ? 1 : -1);
@@ -353,7 +407,7 @@
             img.classList.add('lb-thumb');
             if (!img.hasAttribute('tabindex')) img.setAttribute('tabindex', '0');
             img.setAttribute('role', 'button');
-            img.setAttribute('aria-label', 'Expand image' + (img.alt ? ': ' + img.alt : ''));
+            img.setAttribute('aria-label', (img.hasAttribute('data-video') ? 'Play video' : 'Expand image') + (img.alt ? ': ' + img.alt : ''));
             img.addEventListener('click', function () { open(thumbs.indexOf(img)); });
             img.addEventListener('keydown', function (e) {
                 if (e.key === 'Enter' || e.key === ' ') {
