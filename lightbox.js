@@ -65,6 +65,12 @@
         '  .lb-prev { left: 0.5rem; } .lb-next { right: 0.5rem; }',
         '  .lb-caption { font-size: 0.85rem; bottom: 0.75rem; }',
         '}',
+        '@media (max-height: 499px) and (orientation: landscape) {',
+        '  .lb-caption, .lb-count { display: none; }',
+        '  .lb-btn { width: 40px; height: 40px; }',
+        '  .lb-close { top: 0.5rem; right: 0.5rem; }',
+        '  .lb-prev { left: 0.5rem; } .lb-next { right: 0.5rem; }',
+        '}',
         '@media (prefers-reduced-motion: reduce) {',
         '  .lb-overlay, .lb-img, .lb-caption, .lb-btn, .lb-count { transition-duration: 1ms !important; }',
         '}'
@@ -102,8 +108,10 @@
 
     /* Largest rect with the image's aspect ratio that fits the viewport. */
     function fitRect(natW, natH) {
-        var padX = window.innerWidth < 600 ? 16 : 72;
-        var padY = window.innerWidth < 600 ? 88 : 104;
+        // Landscape phones are wide but short: drop the caption gutter and use nearly the full height.
+        var short = window.innerHeight < 500 && window.innerWidth > window.innerHeight;
+        var padX = short ? 60 : (window.innerWidth < 600 ? 16 : 72);
+        var padY = short ? 6 : (window.innerWidth < 600 ? 88 : 104);
         var availW = Math.max(80, window.innerWidth - padX * 2);
         var availH = Math.max(80, window.innerHeight - padY * 2);
         var ratio = natW / natH;
