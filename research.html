@@ -201,13 +201,16 @@
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 2.25rem 2.5rem;
-            margin: 1.5rem auto;
+            margin: 1rem auto;
             max-width: 1100px;
             text-align: left;
             position: relative;
             overflow: hidden;
+            transition: border-color 0.25s;
         }
+
+        .research-entry:hover,
+        .research-entry[open] { border-color: var(--accent-dark); }
 
         .research-entry::before {
             content: '';
@@ -220,20 +223,78 @@
         }
 
         .entry-head {
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 1.25rem;
-            margin-bottom: 1.5rem;
+            display: block;
+            list-style: none;
+            cursor: pointer;
+            position: relative;
+            padding: 1.5rem 4.5rem 1.5rem 2.25rem;
         }
+
+        .entry-head::-webkit-details-marker { display: none; }
+
+        .entry-head:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 12px; }
+
+        .research-entry[open] .entry-head { border-bottom: 1px solid var(--border); }
+
+        .entry-toggle {
+            position: absolute;
+            top: 50%;
+            right: 1.75rem;
+            width: 32px;
+            height: 32px;
+            margin-top: -16px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            transition: border-color 0.25s, transform 0.3s;
+        }
+
+        .entry-toggle::before,
+        .entry-toggle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 12px;
+            height: 2px;
+            margin: -1px 0 0 -6px;
+            background: var(--accent);
+        }
+
+        .entry-toggle::after { transform: rotate(90deg); transition: transform 0.3s; }
+
+        .entry-head:hover .entry-toggle { border-color: var(--accent); }
+
+        .research-entry[open] .entry-toggle { transform: rotate(180deg); }
+
+        .research-entry[open] .entry-toggle::after { transform: rotate(0deg); }
+
+        .entry-number {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            margin-bottom: 0.25rem;
+        }
+
+        .research-entry .entry-teaser {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-top: 0.6rem;
+        }
+
+        .research-entry[open] .entry-teaser { display: none; }
+
+        .entry-body { padding: 1.75rem 2.25rem 2.25rem; }
 
         .entry-title {
             font-family: 'Oswald', sans-serif;
-            font-size: 1.9rem;
+            font-size: 1.5rem;
             font-weight: 600;
             letter-spacing: 0.03em;
             color: var(--white);
             text-transform: uppercase;
-            margin-bottom: 0.75rem;
-            line-height: 1.25;
+            margin-bottom: 0.6rem;
+            line-height: 1.2;
         }
 
         .entry-meta {
@@ -447,10 +508,9 @@
                 margin: 1rem auto;
             }
 
-            .research-entry {
-                padding: 1.75rem;
-                margin: 1rem auto;
-            }
+            .entry-head { padding: 1.25rem 4rem 1.25rem 1.5rem; }
+            .entry-toggle { right: 1.25rem; }
+            .entry-body { padding: 1.5rem; }
 
             .coming-soon { font-size: 1.05rem; }
         }
@@ -489,12 +549,15 @@
             .coming-soon { font-size: 1rem; }
 
             .research-entry {
-                padding: 1.35rem 1.15rem;
                 margin: 0.75rem auto;
                 border-radius: 8px;
             }
 
-            .entry-title { font-size: 1.4rem; }
+            .entry-head { padding: 1.15rem 3.5rem 1.15rem 1.15rem; }
+            .entry-toggle { right: 1rem; width: 28px; height: 28px; margin-top: -14px; }
+            .entry-body { padding: 1.25rem 1.15rem 1.35rem; }
+
+            .entry-title { font-size: 1.2rem; }
 
             .entry-date { margin-left: 0; width: 100%; }
 
@@ -571,127 +634,139 @@
         </section>
 
         <!-- ENTRY 1 -->
-        <article class="research-entry">
-            <div class="entry-head">
+        <details class="research-entry" id="fin-slots">
+            <summary class="entry-head">
+                <div class="entry-number">01</div>
                 <h3 class="entry-title">Cutting Clean Through-the-Wall Fin Slots</h3>
                 <div class="entry-meta">
                     <span class="tag">Method</span>
                     <span class="tag">Fabrication</span>
                     <span class="entry-date">Summer 2026</span>
                 </div>
-            </div>
+                <p class="entry-teaser">Printed a wrap-around guide so every fin slot came out straight, evenly spaced, and the same length.</p>
+                <span class="entry-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="entry-body">
+                <div class="entry-block">
+                    <div class="entry-label">Objective</div>
+                    <p>Cut fin slots into the airframe that are straight, evenly spaced, and free of tear-out. Slot alignment translates directly into fin alignment &mdash; crooked slots produce crooked fins and induced roll or instability in flight.</p>
+                </div>
 
-            <div class="entry-block">
-                <div class="entry-label">Objective</div>
-                <p>Cut fin slots into the airframe that are straight, evenly spaced, and free of tear-out. Slot alignment translates directly into fin alignment &mdash; crooked slots produce crooked fins and induced roll or instability in flight.</p>
-            </div>
+                <div class="entry-block">
+                    <div class="entry-label">Method</div>
+                    <ol>
+                        <li>Printed a slot guide sized to fit around the body tube.</li>
+                        <li>Secured the guide to the body tube with duct tape.</li>
+                        <li>Drilled a hole at the end of each slot, using the guide to locate them.</li>
+                        <li>Cut down the slots with the Dremel, following the guide edges.</li>
+                    </ol>
+                    <img class="entry-photo" src="Cutting_jig.jpeg" alt="Printed cutting jig taped around the body tube to guide the fin slots">
+                    <p class="photo-caption">Printed cutting jig taped to the body tube.</p>
+                </div>
 
-            <div class="entry-block">
-                <div class="entry-label">Method</div>
-                <ol>
-                    <li>Printed a slot guide sized to fit around the body tube.</li>
-                    <li>Secured the guide to the body tube with duct tape.</li>
-                    <li>Drilled a hole at the end of each slot, using the guide to locate them.</li>
-                    <li>Cut down the slots with the Dremel, following the guide edges.</li>
-                </ol>
-                <img class="entry-photo" src="Cutting_jig.jpeg" alt="Printed cutting jig taped around the body tube to guide the fin slots">
-                <p class="photo-caption">Printed cutting jig taped to the body tube.</p>
-            </div>
+                <div class="entry-block">
+                    <div class="entry-label">Tooling</div>
+                    <table class="data-table">
+                        <thead><tr><th>Tool / material</th><th>Role</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Printed slot guide</strong></td><td>Sets slot position and spacing around the tube</td></tr>
+                            <tr><td><strong>Duct tape</strong></td><td>Holds the guide in place on the body tube</td></tr>
+                            <tr><td><strong>Drill</strong></td><td>Hole at each slot end to define its length</td></tr>
+                            <tr><td><strong>Dremel</strong></td><td>Cuts the slots along the guide edges</td></tr>
+                        </tbody>
+                    </table>
+                </div>
 
-            <div class="entry-block">
-                <div class="entry-label">Tooling</div>
-                <table class="data-table">
-                    <thead><tr><th>Tool / material</th><th>Role</th></tr></thead>
-                    <tbody>
-                        <tr><td><strong>Printed slot guide</strong></td><td>Sets slot position and spacing around the tube</td></tr>
-                        <tr><td><strong>Duct tape</strong></td><td>Holds the guide in place on the body tube</td></tr>
-                        <tr><td><strong>Drill</strong></td><td>Hole at each slot end to define its length</td></tr>
-                        <tr><td><strong>Dremel</strong></td><td>Cuts the slots along the guide edges</td></tr>
-                    </tbody>
-                </table>
+                <div class="entry-block">
+                    <div class="entry-label">Conclusion</div>
+                    <p>Printing a guide that wraps the body tube let us position and cut all the slots consistently without measuring and marking each one by hand. The end holes kept every cut to length and gave clean slot ends.</p>
+                </div>
             </div>
-
-            <div class="entry-block">
-                <div class="entry-label">Conclusion</div>
-                <p>Printing a guide that wraps the body tube let us position and cut all the slots consistently without measuring and marking each one by hand. The end holes kept every cut to length and gave clean slot ends.</p>
-            </div>
-        </article>
+        </details>
 
         <!-- ENTRY 2 -->
-        <article class="research-entry">
-            <div class="entry-head">
+        <details class="research-entry" id="adhesives">
+            <summary class="entry-head">
+                <div class="entry-number">02</div>
                 <h3 class="entry-title">Adhesive Selection: Structural vs. High-Heat Bonds</h3>
                 <div class="entry-meta">
                     <span class="tag">Materials</span>
                     <span class="entry-date">Summer 2026</span>
                 </div>
-            </div>
+                <p class="entry-teaser">Which epoxy goes where: a toughened structural bond for the airframe and a high-heat epoxy at the nozzle.</p>
+                <span class="entry-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="entry-body">
+                <div class="entry-block">
+                    <div class="entry-label">Objective</div>
+                    <p>Match each bonded joint to the right adhesive. Airframe structure needs a tough, gap-filling bond; the motor-retainer zone near the nozzle sees high heat that most structural epoxies are not rated to hold.</p>
+                </div>
 
-            <div class="entry-block">
-                <div class="entry-label">Objective</div>
-                <p>Match each bonded joint to the right adhesive. Airframe structure needs a tough, gap-filling bond; the motor-retainer zone near the nozzle sees high heat that most structural epoxies are not rated to hold.</p>
-            </div>
+                <div class="entry-block">
+                    <div class="entry-label">Approach</div>
+                    <p>Use a toughened structural epoxy for all airframe bonds, thickened only when a fillet needs to hold its shape. Reserve a high-heat metal epoxy strictly for the metal-to-metal zone at the motor nozzle.</p>
+                </div>
 
-            <div class="entry-block">
-                <div class="entry-label">Approach</div>
-                <p>Use a toughened structural epoxy for all airframe bonds, thickened only when a fillet needs to hold its shape. Reserve a high-heat metal epoxy strictly for the metal-to-metal zone at the motor nozzle.</p>
-            </div>
+                <div class="entry-block">
+                    <div class="entry-label">Selection</div>
+                    <table class="data-table">
+                        <thead><tr><th>Joint</th><th>Adhesive</th><th>Reason</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Centering rings, bulkheads</strong></td><td>Aeropoxy ES6209</td><td>Toughened structural bond; works well on Blue Tube and plywood</td></tr>
+                            <tr><td><strong>Fillets that must hold shape</strong></td><td>ES6209 + glass microballoons</td><td>Raises viscosity so fillets don't sag before cure</td></tr>
+                            <tr><td><strong>Retainer base &harr; motor tube (nozzle zone)</strong></td><td>JB Weld</td><td>Tolerates high sustained heat, metal-to-metal</td></tr>
+                        </tbody>
+                    </table>
+                </div>
 
-            <div class="entry-block">
-                <div class="entry-label">Selection</div>
-                <table class="data-table">
-                    <thead><tr><th>Joint</th><th>Adhesive</th><th>Reason</th></tr></thead>
-                    <tbody>
-                        <tr><td><strong>Centering rings, bulkheads</strong></td><td>Aeropoxy ES6209</td><td>Toughened structural bond; works well on Blue Tube and plywood</td></tr>
-                        <tr><td><strong>Fillets that must hold shape</strong></td><td>ES6209 + glass microballoons</td><td>Raises viscosity so fillets don't sag before cure</td></tr>
-                        <tr><td><strong>Retainer base &harr; motor tube (nozzle zone)</strong></td><td>JB Weld</td><td>Tolerates high sustained heat, metal-to-metal</td></tr>
-                    </tbody>
-                </table>
-            </div>
+                <div class="entry-block">
+                    <img class="entry-photo" src="fin_fillets.jpeg" alt="Structural epoxy fin fillets bonding the fins to the airframe">
+                    <p class="photo-caption">Fin fillets laid with structural epoxy.</p>
+                </div>
 
-            <div class="entry-block">
-                <img class="entry-photo" src="fin_fillets.jpeg" alt="Structural epoxy fin fillets bonding the fins to the airframe">
-                <p class="photo-caption">Fin fillets laid with structural epoxy.</p>
+                <div class="callout">
+                    <strong>Note:</strong> Microballoons raise viscosity but reduce bond strength if overused. Add only the minimum needed for the fillet to hold its shape. Adhesive temperature ratings vary by product &mdash; confirm service temps on the manufacturer datasheet for your specific epoxy before relying on them.
+                </div>
             </div>
-
-            <div class="callout">
-                <strong>Note:</strong> Microballoons raise viscosity but reduce bond strength if overused. Add only the minimum needed for the fillet to hold its shape. Adhesive temperature ratings vary by product &mdash; confirm service temps on the manufacturer datasheet for your specific epoxy before relying on them.
-            </div>
-        </article>
+        </details>
 
         <!-- ENTRY 3 -->
-        <article class="research-entry">
-            <div class="entry-head">
+        <details class="research-entry" id="printed-structures">
+            <summary class="entry-head">
+                <div class="entry-number">03</div>
                 <h3 class="entry-title">3D-Printing Structural Components</h3>
                 <div class="entry-meta">
                     <span class="tag">Materials</span>
                     <span class="tag blue">3D Printing</span>
                     <span class="entry-date">Summer 2026</span>
                 </div>
-            </div>
+                <p class="entry-teaser">Printing the nose cone, centering rings, and fins in-house instead of cutting them from sheet stock.</p>
+                <span class="entry-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="entry-body">
+                <div class="entry-block">
+                    <div class="entry-label">Objective</div>
+                    <p>Produce the load-bearing structural parts of the airframe in-house on the 3D printer instead of cutting them from sheet stock, and confirm the printed parts held their geometry through assembly.</p>
+                </div>
 
-            <div class="entry-block">
-                <div class="entry-label">Objective</div>
-                <p>Produce the load-bearing structural parts of the airframe in-house on the 3D printer instead of cutting them from sheet stock, and confirm the printed parts held their geometry through assembly.</p>
-            </div>
+                <div class="entry-block">
+                    <div class="entry-label">What We Printed</div>
+                    <table class="data-table">
+                        <thead><tr><th>Part</th><th>Role</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Nose Cone</strong></td><td>Essential for aerodynamics, expensive outside of 3D printing</td></tr>
+                            <tr><td><strong>Centering rings</strong></td><td>Align and bond the motor mount tube inside the airframe</td></tr>
+                            <tr><td><strong>Fins</strong></td><td>Printed rather than cut from sheet stock</td></tr>
+                        </tbody>
+                    </table>
+                </div>
 
-            <div class="entry-block">
-                <div class="entry-label">What We Printed</div>
-                <table class="data-table">
-                    <thead><tr><th>Part</th><th>Role</th></tr></thead>
-                    <tbody>
-                        <tr><td><strong>Nose Cone</strong></td><td>Essential for aerodynamics, expensive outside of 3D printing</td></tr>
-                        <tr><td><strong>Centering rings</strong></td><td>Align and bond the motor mount tube inside the airframe</td></tr>
-                        <tr><td><strong>Fins</strong></td><td>Printed rather than cut from sheet stock</td></tr>
-                    </tbody>
-                </table>
+                <div class="entry-block">
+                    <div class="entry-label">Conclusion</div>
+                    <p>Printing the nose cone, centering rings, and fins let us fabricate every structural component ourselves with consistent, repeatable geometry &mdash; no sheet material or laser cutter needed, and quick to reprint if a part needed adjusting.</p>
+                </div>
             </div>
-
-            <div class="entry-block">
-                <div class="entry-label">Conclusion</div>
-                <p>Printing the nose cone, centering rings, and fins let us fabricate every structural component ourselves with consistent, repeatable geometry &mdash; no sheet material or laser cutter needed, and quick to reprint if a part needed adjusting.</p>
-            </div>
-        </article>
+        </details>
 
     </div>
 
@@ -720,6 +795,14 @@
             <p>Design. Fabricate. Fly.</p>
         </div>
     </footer>
+    <script>
+        function openFromHash() {
+            var entry = location.hash && document.getElementById(location.hash.slice(1));
+            if (entry && entry.tagName === 'DETAILS') { entry.open = true; entry.scrollIntoView(); }
+        }
+        openFromHash();
+        window.addEventListener('hashchange', openFromHash);
+    </script>
     <script src="lightbox.js?v=3" defer></script>
 </body>
 </html>
