@@ -370,7 +370,7 @@
             isolation: isolate;
         }
         .cover-featured { grid-column: 1 / -1; min-height: min(78vh, 720px); }
-        .cover img, .project-hero img {
+        .cover img, .cover video, .project-hero img, .project-hero video {
             position: absolute;
             inset: 0;
             width: 100%;
@@ -388,7 +388,8 @@
             background: linear-gradient(to top, rgba(10, 14, 26, 0.96) 0%, rgba(10, 14, 26, 0.6) 38%, rgba(10, 14, 26, 0.05) 75%);
         }
         .cover:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-        .cover:hover img, .cover:focus-visible img { transform: scale(1.05); filter: saturate(1) brightness(0.9); }
+        .cover:hover img, .cover:focus-visible img,
+        .cover:hover video, .cover:focus-visible video { transform: scale(1.05); filter: saturate(1) brightness(0.9); }
         .cover-top {
             display: flex;
             justify-content: space-between;
@@ -656,45 +657,45 @@
                 <div class="gallery-grid" data-gallery>
                     <figure class="gallery-item">
                         <div class="gallery-media">
-                            <img src="gallery/h-rocket/launch-poster.jpg" data-video="gallery/h-rocket/launch.mp4" data-caption="Liftoff at Tripoli Houston — July 11, 2026" alt="Launch video: the H-level rocket lifting off at Tripoli Houston" loading="lazy">
+                            <img src="gallery/h-rocket/launch-poster.jpg" data-video="gallery/h-rocket/launch.mp4" data-caption="Liftoff at Tripoli Houston" alt="Launch video: the H-level rocket lifting off at Tripoli Houston" loading="lazy">
                             <div class="gallery-play"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></span></div>
                         </div>
                     </figure>
                     <figure class="gallery-item">
-                        <img src="gallery/h-rocket/01-planning-meeting-1.jpg" data-caption="Kickoff meeting — planning the club’s first high-power rocket — March 2026" alt="Club members gathered in a living room for the H-level rocket kickoff meeting" loading="lazy">
+                        <img src="gallery/h-rocket/01-planning-meeting-1.jpg" data-caption="Kickoff meeting — planning the club’s first high-power rocket" alt="Club members gathered in a living room for the H-level rocket kickoff meeting" loading="lazy">
                     </figure>
                     <figure class="gallery-item">
-                        <img src="gallery/h-rocket/02-planning-meeting-2.jpg" data-caption="Design session — laptops out for sims and parts planning — March 2026" alt="Club members working on laptops during a rocket design session" loading="lazy">
+                        <img src="gallery/h-rocket/02-planning-meeting-2.jpg" data-caption="Design session — laptops out for sims and parts planning" alt="Club members working on laptops during a rocket design session" loading="lazy">
                     </figure>
                     <figure class="gallery-item">
-                        <img src="gallery/h-rocket/03-fin-install.jpg" data-caption="Fitting the 3D-printed fins to the airframe — June 3, 2026" alt="Members fitting black 3D-printed fins to the rocket body tube at a workbench" loading="lazy">
+                        <img src="gallery/h-rocket/03-fin-install.jpg" data-caption="Fitting the 3D-printed fins to the airframe" alt="Members fitting black 3D-printed fins to the rocket body tube at a workbench" loading="lazy">
                     </figure>
                     <figure class="gallery-item">
-                        <img src="gallery/h-rocket/04-airframe-parts.jpg" data-caption="Airframe with the printed slot-cutting jig, motor mount with centering rings, and fins — June 3, 2026" alt="Blue Tube airframe in a yellow 3D-printed slot-cutting jig next to the motor mount and fins" loading="lazy">
+                        <img src="gallery/h-rocket/04-airframe-parts.jpg" data-caption="Airframe with the printed slot-cutting jig, motor mount with centering rings, and fins" alt="Blue Tube airframe in a yellow 3D-printed slot-cutting jig next to the motor mount and fins" loading="lazy">
                     </figure>
                     <figure class="gallery-item">
-                        <img src="gallery/h-rocket/05-build-crew.jpg" data-caption="The build crew at the workbench — June 4, 2026" alt="Six club members smiling around the garage workbench during the rocket build" loading="lazy">
+                        <img src="gallery/h-rocket/05-build-crew.jpg" data-caption="The build crew at the workbench" alt="Six club members smiling around the garage workbench during the rocket build" loading="lazy">
                     </figure>
                     <figure class="gallery-item">
-                        <img src="gallery/h-rocket/06-build-day-1.jpg" data-caption="Build day — assembly and avionics work in the shop — June 4, 2026" alt="Club members gathered around the workbench in the garage shop" loading="lazy">
+                        <img src="gallery/h-rocket/06-build-day-1.jpg" data-caption="Build day — assembly and avionics work in the shop" alt="Club members gathered around the workbench in the garage shop" loading="lazy">
                     </figure>
                     <figure class="gallery-item">
-                        <img src="gallery/h-rocket/07-build-day-2.jpg" data-caption="Build day, continued — checking the flight computer setup — June 4, 2026" alt="Club members working in the garage with a laptop on a toolbox" loading="lazy">
+                        <img src="gallery/h-rocket/07-build-day-2.jpg" data-caption="Build day, continued — checking the flight computer setup" alt="Club members working in the garage with a laptop on a toolbox" loading="lazy">
                     </figure>
                     <figure class="gallery-item">
-                        <img src="gallery/h-rocket/08-finished-rocket.jpg" style="object-position: center 15%" data-caption="Taking shape — nose cone, airframe, and fins together for the first time — June 25, 2026" alt="The rocket in progress, with a black nose cone and blue airframe, standing upright" loading="lazy">
+                        <img src="gallery/h-rocket/08-finished-rocket.jpg" style="object-position: center 15%" data-caption="Taking shape — nose cone, airframe, and fins together for the first time" alt="The rocket in progress, with a black nose cone and blue airframe, standing upright" loading="lazy">
                     </figure>
                     <figure class="gallery-item">
-                        <img src="gallery/h-rocket/09-fin-can.jpg" data-caption="Fin can with three 3D-printed fins — June 25, 2026" alt="Close-up of the rocket's fin can with three black fins" loading="lazy">
+                        <img src="gallery/h-rocket/09-fin-can.jpg" data-caption="Fin can with three 3D-printed fins" alt="Close-up of the rocket's fin can with three black fins" loading="lazy">
                     </figure>
                     <figure class="gallery-item">
-                        <img src="gallery/h-rocket/10-fin-fillets-closeup.jpg" data-caption="Epoxy fin fillets and the motor mount tube — June 25, 2026" alt="Close-up of epoxy fillets along the fin roots and the aft end of the motor mount" loading="lazy">
+                        <img src="gallery/h-rocket/10-fin-fillets-closeup.jpg" data-caption="Epoxy fin fillets and the motor mount tube" alt="Close-up of epoxy fillets along the fin roots and the aft end of the motor mount" loading="lazy">
                     </figure>
                     <figure class="gallery-item">
-                        <img src="gallery/h-rocket/11-avionics-breadboard.jpg" data-caption="Arduino flight logger prototyped on a breadboard — July 6, 2026" alt="Arduino flight data logger wired up on a breadboard" loading="lazy">
+                        <img src="gallery/h-rocket/11-avionics-breadboard.jpg" data-caption="Arduino flight logger prototyped on a breadboard" alt="Arduino flight data logger wired up on a breadboard" loading="lazy">
                     </figure>
                     <figure class="gallery-item gallery-chart">
-                        <img src="flight1_profile.svg" data-caption="Flight 1 data: the onboard barometer (orange) vs. our OpenRocket sim (dashed blue), peaking at 575 m (1,887 ft) — July 11, 2026" alt="Flight 1 altitude chart: measured barometer data peaking at 575 m versus the OpenRocket simulation" loading="lazy">
+                        <img src="flight1_profile.svg" data-caption="Flight 1 data: the onboard barometer (orange) vs. our OpenRocket sim (dashed blue), peaking at 575 m (1,887 ft)" alt="Flight 1 altitude chart: measured barometer data peaking at 575 m versus the OpenRocket simulation" loading="lazy">
                     </figure>
                 </div>
             </div>

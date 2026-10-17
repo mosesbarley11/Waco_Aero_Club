@@ -370,7 +370,7 @@
             isolation: isolate;
         }
         .cover-featured { grid-column: 1 / -1; min-height: min(78vh, 720px); }
-        .cover img, .project-hero img {
+        .cover img, .cover video, .project-hero img, .project-hero video {
             position: absolute;
             inset: 0;
             width: 100%;
@@ -388,7 +388,8 @@
             background: linear-gradient(to top, rgba(10, 14, 26, 0.96) 0%, rgba(10, 14, 26, 0.6) 38%, rgba(10, 14, 26, 0.05) 75%);
         }
         .cover:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-        .cover:hover img, .cover:focus-visible img { transform: scale(1.05); filter: saturate(1) brightness(0.9); }
+        .cover:hover img, .cover:focus-visible img,
+        .cover:hover video, .cover:focus-visible video { transform: scale(1.05); filter: saturate(1) brightness(0.9); }
         .cover-top {
             display: flex;
             justify-content: space-between;
@@ -656,7 +657,7 @@
             </div>
             <div class="project-image">
                 <img src="Cad_design_with_Ethan.jpeg" alt="Club members at the CAD design workshop at Baylor University">
-                <div class="project-image-caption">Club members after the CAD design workshop at Baylor University &mdash; Fall 2025</div>
+                <div class="project-image-caption">Club members after the CAD design workshop at Baylor University</div>
             </div>
         </div>
         <a class="back-link" href="index.html">&larr; All projects</a>

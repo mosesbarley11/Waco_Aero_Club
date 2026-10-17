@@ -370,7 +370,7 @@
             isolation: isolate;
         }
         .cover-featured { grid-column: 1 / -1; min-height: min(78vh, 720px); }
-        .cover img, .project-hero img {
+        .cover img, .cover video, .project-hero img, .project-hero video {
             position: absolute;
             inset: 0;
             width: 100%;
@@ -388,7 +388,8 @@
             background: linear-gradient(to top, rgba(10, 14, 26, 0.96) 0%, rgba(10, 14, 26, 0.6) 38%, rgba(10, 14, 26, 0.05) 75%);
         }
         .cover:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-        .cover:hover img, .cover:focus-visible img { transform: scale(1.05); filter: saturate(1) brightness(0.9); }
+        .cover:hover img, .cover:focus-visible img,
+        .cover:hover video, .cover:focus-visible video { transform: scale(1.05); filter: saturate(1) brightness(0.9); }
         .cover-top {
             display: flex;
             justify-content: space-between;
@@ -611,7 +612,7 @@
     <div class="container">
         <a class="back-link" href="index.html">&larr; All projects</a>
         <div class="project-hero">
-            <img src="gallery/fixed-wing/02-launch-at-the-wall.jpg" style="object-position: center 62%" alt="Two club members in a field under a stormy sky, one holding the plane up to launch" data-no-lightbox>
+            <video src="gallery/fixed-wing/cover-reel.mp4" poster="gallery/fixed-wing/cover-reel-poster.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
             <div class="project-hero-body">
                 <div class="cover-kicker">Project 01</div>
                 <h1>Summer Fixed-Wing Builds &amp; First Flights</h1>
@@ -659,24 +660,24 @@
                 <div class="gallery-grid" data-gallery>
                     <figure class="gallery-item">
                         <div class="gallery-media">
-                            <img src="gallery/fixed-wing/launch-close-poster.jpg" data-video="gallery/fixed-wing/launch-close.mp4" data-caption="Hand launch and climb-out — July 16, 2025" alt="Launch video: a member throws the plane and it climbs into a clear blue sky" loading="lazy">
+                            <img src="gallery/fixed-wing/launch-close-poster.jpg" data-video="gallery/fixed-wing/launch-close.mp4" data-caption="Hand launch and climb-out" alt="Launch video: a member throws the plane and it climbs into a clear blue sky" loading="lazy">
                             <div class="gallery-play"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></span></div>
                         </div>
                     </figure>
                     <figure class="gallery-item">
                         <div class="gallery-media">
-                            <img src="gallery/fixed-wing/launch-cloudy-poster.jpg" data-video="gallery/fixed-wing/launch-cloudy.mp4" data-caption="Hand launch under an overcast sky — May 26, 2025" alt="Launch video: a member throws the plane while the pilot stands by with the transmitter" loading="lazy">
+                            <img src="gallery/fixed-wing/launch-cloudy-poster.jpg" data-video="gallery/fixed-wing/launch-cloudy.mp4" data-caption="Hand launch under an overcast sky" alt="Launch video: a member throws the plane while the pilot stands by with the transmitter" loading="lazy">
                             <div class="gallery-play"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></span></div>
                         </div>
                     </figure>
                     <figure class="gallery-item">
-                        <img src="gallery/fixed-wing/01-hand-launch-pose.jpg" data-caption="Ready to launch — May 26, 2025" alt="A member standing in a field holding the plane overhead" loading="lazy">
+                        <img src="gallery/fixed-wing/01-hand-launch-pose.jpg" data-caption="Ready to launch" alt="A member standing in a field holding the plane overhead" loading="lazy">
                     </figure>
                     <figure class="gallery-item">
-                        <img src="gallery/fixed-wing/02-launch-at-the-wall.jpg" data-caption="Pilot and launcher lined up for a flight — May 28, 2025" alt="Two members in a field under a stormy sky, one holding the plane up to launch" loading="lazy">
+                        <img src="gallery/fixed-wing/02-launch-at-the-wall.jpg" data-caption="Pilot and launcher lined up for a flight" alt="Two members in a field under a stormy sky, one holding the plane up to launch" loading="lazy">
                     </figure>
                     <figure class="gallery-item">
-                        <img src="gallery/fixed-wing/03-flying-wing.jpg" data-caption="A flying wing on the bench outside the shop — July 12, 2025" alt="A large white flying-wing aircraft resting on a workbench in front of the garage shop" loading="lazy">
+                        <img src="gallery/fixed-wing/03-flying-wing.jpg" data-caption="A flying wing on the bench outside the shop" alt="A large white flying-wing aircraft resting on a workbench in front of the garage shop" loading="lazy">
                     </figure>
                 </div>
             </div>
@@ -709,5 +710,11 @@
         </div>
     </footer>
     <script src="lightbox.js?v=4" defer></script>
+    <script>
+        // Hold looping cover videos on their poster frame for people who prefer reduced motion
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('video[autoplay]').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
+        }
+    </script>
 </body>
 </html>
