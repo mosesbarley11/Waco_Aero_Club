@@ -360,7 +360,7 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
+            justify-content: space-between;
             min-height: 460px;
             padding: 1.75rem;
             overflow: hidden;
@@ -390,6 +390,20 @@
         .cover:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
         .cover:hover img, .cover:focus-visible img,
         .cover:hover video, .cover:focus-visible video { transform: scale(1.05); filter: saturate(1) brightness(0.9); }
+        .cover-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text);
+        }
+        .cover-number {
+            font-family: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: var(--accent);
+        }
         .cover-kicker {
             font-size: 0.75rem;
             font-weight: 600;
@@ -407,6 +421,21 @@
             letter-spacing: -0.03em;
         }
         .cover-featured .cover-title, .project-hero h1 { font-size: clamp(2.2rem, 6vw, 4.4rem); }
+        .cover-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+            padding-bottom: 0.2rem;
+            border-bottom: 1px solid var(--accent);
+            font-family: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .cover-cta span { transition: transform 0.3s; }
+        .cover:hover .cover-cta span { transform: translateX(5px); }
         /* ===== PROJECT DETAIL ===== */
         .back-link {
             display: inline-block;
@@ -576,20 +605,38 @@
     <main class="covers">
         <a class="cover cover-featured" href="project-h-rocket.html">
             <img src="gallery/h-rocket/launch-poster.jpg" style="object-position: center 45%" alt="The H-level rocket lifting off at Tripoli Houston" data-no-lightbox>
+            <div class="cover-top">
+                <span class="cover-number">03</span>
+                <span>Summer 2026</span>
+            </div>
             <div class="cover-body">
+                <div class="cover-kicker">High-Power Rocketry</div>
                 <h2 class="cover-title">H-Level Rocket</h2>
+                <div class="cover-cta">View project <span>&rarr;</span></div>
             </div>
         </a>
         <a class="cover" href="project-cad-workshop.html">
             <img src="Cad_design_with_Ethan.jpeg" style="object-position: center 35%" alt="Club members at the CAD design workshop at Baylor University" data-no-lightbox loading="lazy">
+            <div class="cover-top">
+                <span class="cover-number">02</span>
+                <span>Fall 2025</span>
+            </div>
             <div class="cover-body">
+                <div class="cover-kicker">CAD / Design</div>
                 <h2 class="cover-title">Intro to CAD Design</h2>
+                <div class="cover-cta">View project <span>&rarr;</span></div>
             </div>
         </a>
         <a class="cover" href="project-fixed-wing.html">
             <video src="gallery/fixed-wing/cover-reel.mp4" poster="gallery/fixed-wing/cover-reel-poster.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
+            <div class="cover-top">
+                <span class="cover-number">01</span>
+                <span>Summer 2025</span>
+            </div>
             <div class="cover-body">
+                <div class="cover-kicker">Fixed-Wing</div>
                 <h2 class="cover-title">Fixed-Wing First Flights</h2>
+                <div class="cover-cta">View project <span>&rarr;</span></div>
             </div>
         </a>
     </main>
