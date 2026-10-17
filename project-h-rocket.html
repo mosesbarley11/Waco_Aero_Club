@@ -449,7 +449,7 @@
             transition: color 0.25s;
         }
         .back-link:hover { color: var(--accent); }
-        .project-hero { justify-content: flex-end; margin: 1rem auto 0; }
+        .project-hero { justify-content: flex-end; margin: 1rem auto 0; min-height: min(68vh, 620px); }
         .project-hero h1 { margin-bottom: 1rem; }
         .project-hero .project-tags { margin-bottom: 0; }
         .project-detail .project-desc { font-size: 1.05rem; }
@@ -531,12 +531,6 @@
             color: var(--text);
             font-weight: 500;
         }
-        .footer-logo {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 1rem;
-            opacity: 0.4;
-        }
         /* ===== RESPONSIVE: TABLET ===== */
         @media (max-width: 768px) {
 
@@ -603,7 +597,7 @@
     <div class="container">
         <a class="back-link" href="index.html">&larr; All projects</a>
         <div class="project-hero">
-            <video src="gallery/h-rocket/cover-reel.mp4" poster="gallery/h-rocket/cover-reel-poster.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
+            <video src="gallery/h-rocket/cover-reel.mp4?v=2" poster="gallery/h-rocket/cover-reel-poster.jpg?v=2" autoplay muted loop playsinline aria-hidden="true"></video>
             <div class="project-hero-body">
                 <div class="cover-kicker">Project 03</div>
                 <h1>H-Level Rocket: Build &amp; Launch</h1>
@@ -653,12 +647,6 @@
                         </div>
                     </figure>
                     <figure class="gallery-item">
-                        <img src="gallery/h-rocket/01-planning-meeting-1.jpg" data-caption="Kickoff meeting — planning the club’s first high-power rocket" alt="Club members gathered in a living room for the H-level rocket kickoff meeting" loading="lazy">
-                    </figure>
-                    <figure class="gallery-item">
-                        <img src="gallery/h-rocket/02-planning-meeting-2.jpg" data-caption="Design session — laptops out for sims and parts planning" alt="Club members working on laptops during a rocket design session" loading="lazy">
-                    </figure>
-                    <figure class="gallery-item">
                         <img src="gallery/h-rocket/03-fin-install.jpg" data-caption="Fitting the 3D-printed fins to the airframe" alt="Members fitting black 3D-printed fins to the rocket body tube at a workbench" loading="lazy">
                     </figure>
                     <figure class="gallery-item">
@@ -701,25 +689,6 @@
     </div>
     <footer>
         <div class="container">
-            <div class="footer-logo">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 50" width="80">
-                    <defs>
-                        <linearGradient id="ftL" x1="1" y1="0" x2="0" y2="0">
-                            <stop offset="0%" stop-color="#f97316"/>
-                            <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
-                        </linearGradient>
-                        <linearGradient id="ftR" x1="0" y1="0" x2="1" y2="0">
-                            <stop offset="0%" stop-color="#f97316"/>
-                            <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
-                        </linearGradient>
-                    </defs>
-                    <path d="M58 8 Q45 4 25 2 Q10 1 2 2" fill="none" stroke="url(#ftL)" stroke-width="1.5" opacity="0.6"/>
-                    <path d="M62 8 Q75 4 95 2 Q110 1 118 2" fill="none" stroke="url(#ftR)" stroke-width="1.5" opacity="0.6"/>
-                    <path d="M60 2 L63 12 L62 12 L62 18 L58 18 L58 12 L57 12 Z" fill="#f97316" opacity="0.7"/>
-                    <text x="60" y="36" text-anchor="middle" font-size="10" font-weight="700" fill="#e8eaf0" letter-spacing="3" font-family="Oswald, sans-serif">WACO</text>
-                    <text x="60" y="46" text-anchor="middle" font-size="5" font-weight="500" fill="#f97316" letter-spacing="5" font-family="Oswald, sans-serif">AERO</text>
-                </svg>
-            </div>
             <p>&copy; 2025 Waco Aero &mdash; High School Aerospace Research Club</p>
             <p>Design. Fabricate. Fly.</p>
         </div>

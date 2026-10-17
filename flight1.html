@@ -81,15 +81,6 @@
             background: linear-gradient(to right, var(--accent) 0%, transparent 100%);
         }
 
-        h2::before {
-            content: '';
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            background: var(--accent);
-            clip-path: polygon(50% 0%, 65% 45%, 85% 55%, 65% 55%, 65% 85%, 55% 100%, 50% 85%, 45% 100%, 35% 85%, 35% 55%, 15% 55%, 35% 45%);
-            flex-shrink: 0;
-        }
 
         p {
             color: var(--text-dim);
@@ -405,12 +396,6 @@
             font-weight: 500;
         }
 
-        .footer-logo {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 1rem;
-            opacity: 0.4;
-        }
 
         /* ===== RESPONSIVE: TABLET ===== */
         @media (max-width: 768px) {
@@ -848,25 +833,6 @@
 
     <footer>
         <div class="container">
-            <div class="footer-logo">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 50" width="80">
-                    <defs>
-                        <linearGradient id="ftL" x1="1" y1="0" x2="0" y2="0">
-                            <stop offset="0%" stop-color="#f97316"/>
-                            <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
-                        </linearGradient>
-                        <linearGradient id="ftR" x1="0" y1="0" x2="1" y2="0">
-                            <stop offset="0%" stop-color="#f97316"/>
-                            <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
-                        </linearGradient>
-                    </defs>
-                    <path d="M58 8 Q45 4 25 2 Q10 1 2 2" fill="none" stroke="url(#ftL)" stroke-width="1.5" opacity="0.6"/>
-                    <path d="M62 8 Q75 4 95 2 Q110 1 118 2" fill="none" stroke="url(#ftR)" stroke-width="1.5" opacity="0.6"/>
-                    <path d="M60 2 L63 12 L62 12 L62 18 L58 18 L58 12 L57 12 Z" fill="#f97316" opacity="0.7"/>
-                    <text x="60" y="36" text-anchor="middle" font-size="10" font-weight="700" fill="#e8eaf0" letter-spacing="3" font-family="Oswald, sans-serif">WACO</text>
-                    <text x="60" y="46" text-anchor="middle" font-size="5" font-weight="500" fill="#f97316" letter-spacing="5" font-family="Oswald, sans-serif">AERO</text>
-                </svg>
-            </div>
             <p>&copy; 2025 Waco Aero &mdash; High School Aerospace Research Club</p>
             <p>Design. Fabricate. Fly.</p>
         </div>
