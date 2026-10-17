@@ -390,20 +390,6 @@
         .cover:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
         .cover:hover img, .cover:focus-visible img,
         .cover:hover video, .cover:focus-visible video { transform: scale(1.05); filter: saturate(1) brightness(0.9); }
-        .cover-top {
-            display: flex;
-            justify-content: space-between;
-            gap: 1rem;
-            font-size: 0.72rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: var(--text);
-        }
-        .cover-number {
-            font-family: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            color: var(--accent);
-        }
         .cover-kicker {
             font-size: 0.75rem;
             font-weight: 600;
@@ -421,28 +407,6 @@
             letter-spacing: -0.03em;
         }
         .cover-featured .cover-title, .project-hero h1 { font-size: clamp(2.2rem, 6vw, 4.4rem); }
-        .cover-sub {
-            max-width: 560px;
-            margin-top: 0.75rem;
-            font-size: 0.95rem;
-            color: var(--text);
-            opacity: 0.85;
-        }
-        .cover-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1.25rem;
-            padding-bottom: 0.2rem;
-            border-bottom: 1px solid var(--accent);
-            font-family: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-        .cover-cta span { transition: transform 0.3s; }
-        .cover:hover .cover-cta span { transform: translateX(5px); }
         /* ===== PROJECT DETAIL ===== */
         .back-link {
             display: inline-block;
@@ -660,7 +624,7 @@
                 <div class="gallery-grid" data-gallery>
                     <figure class="gallery-item">
                         <div class="gallery-media">
-                            <img src="gallery/fixed-wing/launch-close-poster.jpg" data-video="gallery/fixed-wing/launch-close.mp4" data-caption="Hand launch and climb-out" alt="Launch video: a member throws the plane and it climbs into a clear blue sky" loading="lazy">
+                            <img src="gallery/fixed-wing/launch-flyby-poster.jpg" data-video="gallery/fixed-wing/launch-flyby.mp4" data-caption="Climb-out and a low pass across the sun" alt="Flight video: the plane climbs past the camera and banks across the sun" loading="lazy">
                             <div class="gallery-play"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></span></div>
                         </div>
                     </figure>
