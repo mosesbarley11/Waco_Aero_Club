@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <pattern id="fine" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#38bdf8" stroke-opacity="0.07" stroke-width="1"/>
+    </pattern>
+    <pattern id="coarse" width="200" height="200" patternUnits="userSpaceOnUse">
+      <path d="M200 0H0V200" fill="none" stroke="#38bdf8" stroke-opacity="0.14" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="glow" cx="62%" cy="38%" r="60%">
+      <stop offset="0%" stop-color="#1a2744"/>
+      <stop offset="100%" stop-color="#0a0e1a"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+  <rect width="1600" height="900" fill="url(#fine)"/>
+  <rect width="1600" height="900" fill="url(#coarse)"/>
+  <!-- High-wing trainer, plan view, drawn as a blueprint outline -->
+  <g transform="translate(1010 360) rotate(-18)" fill="none" stroke="#f97316" stroke-width="3" stroke-linejoin="round">
+    <path d="M-30 -250 Q0 -290 30 -250 L34 230 Q0 250 -34 230 Z" fill="#f97316" fill-opacity="0.06"/>
+    <path d="M-34 -120 L-470 -100 L-470 -10 L-34 -20 Z M34 -120 L470 -100 L470 -10 L34 -20 Z" fill="#f97316" fill-opacity="0.08"/>
+    <path d="M-34 175 L-170 185 L-170 235 L-34 230 Z M34 175 L170 185 L170 235 L34 230 Z" fill="#f97316" fill-opacity="0.08"/>
+    <path d="M-470 -30 L-250 -26 M470 -30 L250 -26 M-170 215 L-34 212 M170 215 L34 212" stroke-opacity="0.6" stroke-width="2"/>
+    <circle cx="0" cy="-262" r="6" fill="#f97316"/>
+    <path d="M-60 -282 L60 -282" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <!-- Dimension lines -->
+  <g stroke="#38bdf8" stroke-opacity="0.45" stroke-width="1.5" fill="#38bdf8" fill-opacity="0.6" font-family="Inter, sans-serif" font-size="18" letter-spacing="3">
+    <path d="M560 760 L1460 470" stroke-dasharray="6 8"/>
+    <text x="1250" y="600" stroke="none" transform="rotate(-18 1250 600)">FT EXPLORER · PLAN VIEW</text>
+  </g>
+</svg>
