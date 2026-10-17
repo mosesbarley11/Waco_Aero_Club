@@ -477,14 +477,13 @@
         .topbar-logo {
             display: flex;
             align-items: center;
-            gap: 0.55rem;
+            gap: 0.4em;
             text-decoration: none;
             font-family: 'Oswald', sans-serif;
             font-size: 1.2rem;
             letter-spacing: 0.12em;
             line-height: 1;
         }
-        .topbar-logo svg { width: 14px; height: 24px; flex-shrink: 0; }
         .topbar-logo b { font-weight: 700; color: #e8eaf0; }
         .topbar-logo span { font-weight: 500; color: var(--accent); }
         .topbar nav ul { display: flex; gap: 0.25rem; list-style: none; }
@@ -591,7 +590,6 @@
 <body>
     <header class="topbar">
         <a class="topbar-logo" href="index.html" aria-label="Waco Aero home">
-            <svg viewBox="0 0 14 24" aria-hidden="true"><path d="M7 0 L11 15 L9 15 L9 20 L5 20 L5 15 L3 15 Z" fill="#f97316"/><path d="M5 16 L1 23 L5 20 Z M9 16 L13 23 L9 20 Z" fill="#ea580c"/></svg>
             <b>WACO</b><span>AERO</span>
         </a>
         <nav>
@@ -605,7 +603,7 @@
     <div class="container">
         <a class="back-link" href="index.html">&larr; All projects</a>
         <div class="project-hero">
-            <img src="gallery/h-rocket/launch-poster.jpg" style="object-position: center 45%" alt="The H-level rocket lifting off at Tripoli Houston" data-no-lightbox>
+            <video src="gallery/h-rocket/cover-reel.mp4" poster="gallery/h-rocket/cover-reel-poster.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
             <div class="project-hero-body">
                 <div class="cover-kicker">Project 03</div>
                 <h1>H-Level Rocket: Build &amp; Launch</h1>
@@ -751,5 +749,11 @@
             });
     </script>
     <script src="lightbox.js?v=4" defer></script>
+    <script>
+        // Hold looping cover videos on their poster frame for people who prefer reduced motion
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('video[autoplay]').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
+        }
+    </script>
 </body>
 </html>
