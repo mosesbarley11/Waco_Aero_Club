@@ -31,83 +31,21 @@
             background-color: var(--deep);
             overflow-x: hidden;
         }
-        /* ===== HEADER ===== */
-        header {
-            background: var(--dark);
-            border-bottom: 1px solid var(--border);
-            padding: 2rem 0 2.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -5%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 70%);
-            pointer-events: none;
-        }
+
+
+
         .container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 24px;
             position: relative;
         }
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .header-logo svg {
-            display: block;
-            max-width: 380px;
-            width: 100%;
-            height: auto;
-        }
-        /* ===== NAV ===== */
-        nav {
-            background-color: var(--dark);
-            border-bottom: 2px solid var(--accent);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            max-width: 1100px;
-            margin: 0 auto;
-            flex-wrap: wrap;
-        }
-        nav ul li a {
-            display: block;
-            padding: 1rem 1.75rem;
-            color: var(--text-dim);
-            text-decoration: none;
-            font-size: 0.92rem;
-            font-weight: 500;
-            letter-spacing: 0;
-            transition: color 0.3s, background 0.3s;
-            white-space: nowrap;
-        }
-        nav ul li a:hover,
-        nav ul li a.active {
-            color: var(--accent);
-            background: var(--accent-glow);
-        }
+
+
+
+
+
+
         /* ===== SECTIONS ===== */
         section {
             background: var(--surface);
@@ -224,6 +162,53 @@
             color: var(--white);
             transform: translateY(-1px);
         }
+        /* ===== TOP BAR ===== */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            height: 64px;
+            padding: 0 28px;
+            background: rgba(10, 14, 26, 0.9);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        .topbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.12em;
+            line-height: 1;
+        }
+        .topbar-logo svg { width: 14px; height: 24px; flex-shrink: 0; }
+        .topbar-logo b { font-weight: 700; color: #e8eaf0; }
+        .topbar-logo span { font-weight: 500; color: var(--accent); }
+        .topbar nav ul { display: flex; gap: 0.25rem; list-style: none; }
+        .topbar nav a {
+            display: block;
+            padding: 0.5rem 0.85rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.25s;
+        }
+        .topbar nav a:hover,
+        .topbar nav a.active { color: var(--white); }
+        .topbar nav a.active { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 0.5em; }
+        @media (max-width: 480px) {
+            .topbar { height: 56px; padding: 0 14px; }
+            .topbar-logo { font-size: 1.05rem; }
+            .topbar nav a { padding: 0.5rem 0.55rem; font-size: 0.9rem; }
+        }
         /* ===== FOOTER ===== */
         footer {
             background-color: var(--dark);
@@ -259,15 +244,10 @@
         }
         /* ===== RESPONSIVE: TABLET ===== */
         @media (max-width: 768px) {
-            .header-logo svg { max-width: 260px; }
-            header { padding: 1.5rem 0 2rem; }
+
+
             .container { padding: 0 16px; }
-            nav ul li a {
-                padding: 0.75rem 1rem;
-                font-size: 0.92rem;
-                letter-spacing: 0;
-                font-weight: 500;
-            }
+
             section {
                 padding: 1.75rem;
                 margin: 1rem auto;
@@ -284,20 +264,12 @@
         }
         /* ===== RESPONSIVE: MOBILE ===== */
         @media (max-width: 480px) {
-            .header-logo svg { max-width: 200px; }
-            header { padding: 1.25rem 0 1.5rem; }
+
+
             .container { padding: 0 12px; }
-            nav ul { justify-content: space-around; }
-            nav ul li {
-                flex: 1;
-                text-align: center;
-            }
-            nav ul li a {
-                padding: 0.65rem 0.5rem;
-                font-size: 0.92rem;
-                letter-spacing: 0;
-                font-weight: 500;
-            }
+
+
+
             section {
                 padding: 1.25rem;
                 margin: 0.75rem auto;
@@ -326,13 +298,8 @@
         }
         /* ===== RESPONSIVE: TINY (320px) ===== */
         @media (max-width: 360px) {
-            .header-logo svg { max-width: 170px; }
-            nav ul li a {
-                font-size: 0.92rem;
-                padding: 0.6rem 0.4rem;
-                letter-spacing: 0;
-                font-weight: 500;
-            }
+
+
             .team-grid { gap: 1rem; }
             .member-photo {
                 width: 90px;
@@ -342,53 +309,19 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="header-logo">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 200" width="380">
-                        <defs>
-                            <linearGradient id="trailCL" x1="1" y1="0" x2="0" y2="0">
-                                <stop offset="0%" stop-color="#f97316"/>
-                                <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
-                            </linearGradient>
-                            <linearGradient id="trailCR" x1="0" y1="0" x2="1" y2="0">
-                                <stop offset="0%" stop-color="#f97316"/>
-                                <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
-                            </linearGradient>
-                            <filter id="glowC">
-                                <feGaussianBlur stdDeviation="4" result="b"/>
-                                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-                            </filter>
-                        </defs>
-                        <path d="M238 42 Q180 25 100 14 Q60 8 30 10" fill="none" stroke="url(#trailCL)" stroke-width="3" filter="url(#glowC)"/>
-                        <path d="M236 50 Q185 38 110 30 Q70 26 40 28" fill="none" stroke="url(#trailCL)" stroke-width="2" opacity="0.5"/>
-                        <path d="M235 58 Q190 50 125 44 Q85 40 55 42" fill="none" stroke="url(#trailCL)" stroke-width="1.2" opacity="0.3"/>
-                        <path d="M242 42 Q300 25 380 14 Q420 8 450 10" fill="none" stroke="url(#trailCR)" stroke-width="3" filter="url(#glowC)"/>
-                        <path d="M244 50 Q295 38 370 30 Q410 26 440 28" fill="none" stroke="url(#trailCR)" stroke-width="2" opacity="0.5"/>
-                        <path d="M245 58 Q290 50 355 44 Q395 40 425 42" fill="none" stroke="url(#trailCR)" stroke-width="1.2" opacity="0.3"/>
-                        <path d="M240 12 L248 50 L244 50 L244 65 L236 65 L236 50 L232 50 Z" fill="#f97316" filter="url(#glowC)"/>
-                        <path d="M236 58 L229 68 L236 64 Z" fill="#ea580c"/>
-                        <path d="M244 58 L251 68 L244 64 Z" fill="#ea580c"/>
-                        <path d="M238 65 L240 74 L242 65" fill="#fb923c" opacity="0.6"/>
-                        <text x="240" y="120" text-anchor="middle" font-size="52" font-weight="700" fill="#e8eaf0" letter-spacing="14" font-family="Oswald, sans-serif">WACO</text>
-                        <line x1="115" y1="128" x2="365" y2="128" stroke="#f97316" stroke-width="2.5"/>
-                        <line x1="135" y1="135" x2="345" y2="135" stroke="#f97316" stroke-width="0.8" opacity="0.4"/>
-                        <text x="240" y="160" text-anchor="middle" font-size="22" font-weight="500" fill="#f97316" letter-spacing="22" font-family="Oswald, sans-serif">AERO</text>
-                        <text x="240" y="185" text-anchor="middle" font-size="8" font-weight="600" fill="#94a3b8" letter-spacing="5" font-family="Inter, sans-serif">DESIGN. FABRICATE. FLY.</text>
-                    </svg>
-                </div>
-            </div>
-        </div>
+    <header class="topbar">
+        <a class="topbar-logo" href="index.html" aria-label="Waco Aero home">
+            <svg viewBox="0 0 14 24" aria-hidden="true"><path d="M7 0 L11 15 L9 15 L9 20 L5 20 L5 15 L3 15 Z" fill="#f97316"/><path d="M5 16 L1 23 L5 20 Z M9 16 L13 23 L9 20 Z" fill="#ea580c"/></svg>
+            <b>WACO</b><span>AERO</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Projects</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="team.html" class="active">Team</a></li>
+            </ul>
+        </nav>
     </header>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="research.html">Research</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="team.html" class="active">Team</a></li>
-        </ul>
-    </nav>
     <div class="container">
         <section>
             <h2>Our Team</h2>
