@@ -401,6 +401,9 @@
         .cover:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
         .cover:hover img, .cover:focus-visible img,
         .cover:hover video, .cover:focus-visible video { transform: scale(1.05); filter: saturate(1) brightness(0.9); }
+        /* Hide Safari's big play button when autoplay is blocked; the poster frame shows instead */
+        .cover video::-webkit-media-controls-start-playback-button, .project-hero video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+        .cover video::-webkit-media-controls, .project-hero video::-webkit-media-controls { display: none !important; }
         .cover-top {
             display: flex;
             justify-content: space-between;
@@ -691,6 +694,15 @@
         // Hold looping cover videos on their poster frame for people who prefer reduced motion
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             document.querySelectorAll('video[autoplay]').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); });
+        } else {
+            // iPhones in Low Power Mode block autoplay; retry now, when the tab comes back, and on the first touch
+            var reels = document.querySelectorAll('video[autoplay]');
+            var playAll = function () {
+                reels.forEach(function (v) { v.muted = true; if (v.paused) { var p = v.play(); if (p) p.catch(function () {}); } });
+            };
+            playAll();
+            document.addEventListener('visibilitychange', function () { if (!document.hidden) playAll(); });
+            ['touchstart', 'touchend', 'click', 'keydown'].forEach(function (e) { document.addEventListener(e, playAll, { passive: true }); });
         }
     </script>
 </body>
